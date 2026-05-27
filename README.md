@@ -20,7 +20,7 @@ An enterprise-grade, event-driven Extract-Load-Transform (ELT) data pipeline tha
 
 The data framework separates processing stages cleanly to optimize throughput and isolate state mutations during execution.
 
-![Data Engineering Pipeline Architecture](http://github.com/jaymart-latigay/openFDA-DE-IngestionToVisualization-Pipeline/blob/main/DS240%20Pipeline.png)
+![Data Engineering Pipeline Architecture](./DS240%20Pipeline.png)
 
 * **Data Source:** openFDA Drug Adverse Event REST API Endpoints.
 * **Extraction & Ingestion Engine:** Python 3.11 optimized via Airflow `PostgresHook` abstractions.
@@ -33,6 +33,8 @@ The data framework separates processing stages cleanly to optimize throughput an
 ---
 
 ## 🧬 Relational Data Model Design
+
+![OpenFDA Relational Entity Relationship Diagram (Crow's Foot)](./Crow's%20Foot%20Entity-Relationship%20Diagram.png)
 
 Incoming unstructured API payloads contain heavily nested drug and patient physical observation metadata arrays. To eliminate expensive storage footprints and prevent index degeneration, processing steps isolate elements into an explicit parent-child Relational Star Schema ($1:N$ Cardinality).
 
