@@ -1,0 +1,84 @@
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.7.2-python3.10
+  environment:
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+    AIRFLOW__CORE__FERNET_KEY: 'FBgZ9un9g2KRIZ6E7960A8128374659102938475610='
+    AIRFLOW__CORE__LOGGING_LEVEL: INFO
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
+    # AUTOMATIC CONNECTION INJECTION: Points directly to your custom Postgres container layout
+    AIRFLOW_CONN_POSTGRES_DEFAULT: 'postgres://airflow:airflow@postgres:5432/airflow'
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./scripts:/opt/airflow/scripts
+    - airflow_logs:/opt/airflow/logs
+    - ./config:/opt/airflow/config
+    - ./plugins:/opt/airflow/plugins
+  user: "${AIRFLOW_UID:-50000}:0"
+  networks:
+    - fda_pipeline_net
+  depends_on:
+    postgres:
+      condition: service_healthy
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - fda_pipeline_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow -d airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
+
+  superset:
+    image: apache/superset:latest
+    container_name: superset
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_SECRET_KEY: "9812739812739182739182739ADFBAE"
+      TALISMAN_CONFIG: "{\"content_security_policy\": {\"default-src\": [\"'self'\", \"'unsafe-inline'\", \"'unsafe-eval'\"]}}"
+    user: "root"
+    volumes:
+      - superset_home:/app/superset_home
+    networks:
+      - fda_pipeline_net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  airflow_logs:
+  superset_home:
+
+networks:
+  fda_pipeline_net:
+    driver: bridge

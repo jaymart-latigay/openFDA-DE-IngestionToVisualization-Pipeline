@@ -1,0 +1,2557 @@
+[0m13:03:26.976836 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7828acbf10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7829d46a90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e782a7c2490>]}
+
+
+============================== 13:03:26.986899 | 7204f2fe-6fad-4e76-a708-5ba53d4104df ==============================
+[0m13:03:26.986899 [info ] [MainThread]: Running with dbt=1.7.19
+[0m13:03:26.987334 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'profiles_dir': '/root/.dbt', 'log_path': '/usr/app/logs', 'version_check': 'True', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt run', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m13:03:27.153784 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e782738bf50>]}
+[0m13:03:27.227200 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7828ab7a10>]}
+[0m13:03:27.227947 [info ] [MainThread]: Registered adapter: postgres=1.7.19
+[0m13:03:27.240005 [debug] [MainThread]: checksum: a8d43cdff37d0f32d7fbe4c5c25bea4bb6c86e162f8ce8fdb1a38cdcf7495431, vars: {}, profile: , target: , version: 1.7.19
+[0m13:03:27.241016 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m13:03:27.241628 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e78272886d0>]}
+[0m13:03:28.281765 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e782713a950>]}
+[0m13:03:28.374942 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7827113fd0>]}
+[0m13:03:28.375356 [info ] [MainThread]: Found 4 models, 3 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models
+[0m13:03:28.375727 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e782710f890>]}
+[0m13:03:28.377297 [info ] [MainThread]: 
+[0m13:03:28.378105 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m13:03:28.379952 [debug] [ThreadPool]: Acquiring new postgres connection 'list_airflow'
+[0m13:03:28.389319 [debug] [ThreadPool]: Using postgres connection "list_airflow"
+[0m13:03:28.389699 [debug] [ThreadPool]: On list_airflow: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m13:03:28.389989 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:03:28.421964 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.0 seconds
+[0m13:03:28.423036 [debug] [ThreadPool]: On list_airflow: Close
+[0m13:03:28.424787 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_airflow, now list_airflow_public)
+[0m13:03:28.429643 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m13:03:28.430089 [debug] [ThreadPool]: On list_airflow_public: BEGIN
+[0m13:03:28.430405 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m13:03:28.438798 [debug] [ThreadPool]: SQL status: BEGIN in 0.0 seconds
+[0m13:03:28.439242 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m13:03:28.439597 [debug] [ThreadPool]: On list_airflow_public: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow_public"} */
+select
+      'airflow' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m13:03:28.496889 [debug] [ThreadPool]: SQL status: SELECT 45 in 0.0 seconds
+[0m13:03:28.498440 [debug] [ThreadPool]: On list_airflow_public: ROLLBACK
+[0m13:03:28.498912 [debug] [ThreadPool]: On list_airflow_public: Close
+[0m13:03:28.508292 [debug] [MainThread]: Using postgres connection "master"
+[0m13:03:28.508561 [debug] [MainThread]: On master: BEGIN
+[0m13:03:28.508780 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:03:28.517752 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m13:03:28.518256 [debug] [MainThread]: Using postgres connection "master"
+[0m13:03:28.518546 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m13:03:28.591902 [debug] [MainThread]: SQL status: SELECT 0 in 0.0 seconds
+[0m13:03:28.593046 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e78271a69d0>]}
+[0m13:03:28.593531 [debug] [MainThread]: On master: ROLLBACK
+[0m13:03:28.593954 [debug] [MainThread]: Using postgres connection "master"
+[0m13:03:28.594168 [debug] [MainThread]: On master: BEGIN
+[0m13:03:28.594666 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m13:03:28.594974 [debug] [MainThread]: On master: COMMIT
+[0m13:03:28.595421 [debug] [MainThread]: Using postgres connection "master"
+[0m13:03:28.595762 [debug] [MainThread]: On master: COMMIT
+[0m13:03:28.596174 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m13:03:28.596462 [debug] [MainThread]: On master: Close
+[0m13:03:28.597098 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m13:03:28.599575 [info ] [MainThread]: 
+[0m13:03:28.619162 [debug] [Thread-1 (]: Began running node model.fda_project.stg_drugs
+[0m13:03:28.619703 [debug] [Thread-2 (]: Began running node model.fda_project.stg_reactions
+[0m13:03:28.621943 [info ] [Thread-2 (]: 2 of 4 START sql view model public.stg_reactions ............................... [RUN]
+[0m13:03:28.622882 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.fda_project.stg_reactions'
+[0m13:03:28.623223 [debug] [Thread-2 (]: Began compiling node model.fda_project.stg_reactions
+[0m13:03:28.620403 [debug] [Thread-3 (]: Began running node model.fda_project.stg_reports
+[0m13:03:28.621074 [info ] [Thread-1 (]: 1 of 4 START sql view model public.stg_drugs ................................... [RUN]
+[0m13:03:28.632520 [debug] [Thread-2 (]: Writing injected SQL for node "model.fda_project.stg_reactions"
+[0m13:03:28.633555 [info ] [Thread-3 (]: 3 of 4 START sql view model public.stg_reports ................................. [RUN]
+[0m13:03:28.635110 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_airflow_public, now model.fda_project.stg_drugs)
+[0m13:03:28.636871 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.fda_project.stg_reports'
+[0m13:03:28.637512 [debug] [Thread-1 (]: Began compiling node model.fda_project.stg_drugs
+[0m13:03:28.642286 [debug] [Thread-1 (]: Writing injected SQL for node "model.fda_project.stg_drugs"
+[0m13:03:28.638061 [debug] [Thread-3 (]: Began compiling node model.fda_project.stg_reports
+[0m13:03:28.647720 [debug] [Thread-3 (]: Writing injected SQL for node "model.fda_project.stg_reports"
+[0m13:03:28.649798 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (compile): 13:03:28.638483 => 13:03:28.649408
+[0m13:03:28.650687 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (compile): 13:03:28.623449 => 13:03:28.650419
+[0m13:03:28.651183 [debug] [Thread-1 (]: Began executing node model.fda_project.stg_drugs
+[0m13:03:28.651715 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (compile): 13:03:28.643074 => 13:03:28.651421
+[0m13:03:28.652139 [debug] [Thread-2 (]: Began executing node model.fda_project.stg_reactions
+[0m13:03:28.670651 [debug] [Thread-3 (]: Began executing node model.fda_project.stg_reports
+[0m13:03:28.686875 [debug] [Thread-1 (]: Writing runtime sql for node "model.fda_project.stg_drugs"
+[0m13:03:28.691375 [debug] [Thread-2 (]: Writing runtime sql for node "model.fda_project.stg_reactions"
+[0m13:03:28.702768 [debug] [Thread-3 (]: Writing runtime sql for node "model.fda_project.stg_reports"
+[0m13:03:28.707003 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m13:03:28.707590 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: BEGIN
+[0m13:03:28.707970 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m13:03:28.708306 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m13:03:28.708598 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m13:03:28.708934 [debug] [Thread-3 (]: On model.fda_project.stg_reports: BEGIN
+[0m13:03:28.709263 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: BEGIN
+[0m13:03:28.710092 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m13:03:28.710607 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m13:03:28.717284 [debug] [Thread-2 (]: SQL status: BEGIN in 0.0 seconds
+[0m13:03:28.717721 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m13:03:28.718084 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+
+  create view "airflow"."public"."stg_reactions__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reactions AS (
+    SELECT * FROM "airflow"."public"."reactions"
+)
+
+SELECT
+    reaction_id,
+    safetyreportid,
+    -- Trim whitespace and handle occasional missing values safely
+    COALESCE(TRIM(reaction_meddra_pt), 'Unknown/Unspecified Term') AS reaction_meddra_pt
+
+FROM raw_reactions
+  );
+[0m13:03:28.718959 [debug] [Thread-1 (]: SQL status: BEGIN in 0.0 seconds
+[0m13:03:28.719346 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m13:03:28.720116 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+
+  create view "airflow"."public"."stg_drugs__dbt_tmp"
+    
+    
+  as (
+    WITH raw_drugs AS (
+    SELECT * FROM "airflow"."public"."drugs"
+)
+
+SELECT
+    drug_id,
+    safetyreportid,
+    -- Basic text trim/case standard to prevent visualization duplicates
+    UPPER(TRIM(medicinal_product)) AS medicinal_product,
+    
+    -- Decode drug_characterization in place based on your dictionary
+    CASE 
+        WHEN drug_characterization = 1 THEN 'Suspect'
+        WHEN drug_characterization = 2 THEN 'Concomitant'
+        WHEN drug_characterization = 3 THEN 'Interacting'
+        ELSE 'Unspecified'
+    END AS drug_characterization
+
+FROM raw_drugs
+  );
+[0m13:03:28.722624 [debug] [Thread-3 (]: SQL status: BEGIN in 0.0 seconds
+[0m13:03:28.722998 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m13:03:28.723365 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+
+  create view "airflow"."public"."stg_reports__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reports AS (
+    SELECT * FROM "airflow"."public"."reports"
+)
+
+SELECT
+    safetyreportid,
+    safetyreportversion,
+    receivedate,
+    transmissiondate,
+    primarysourcecountry,
+    occurcountry,
+    
+    -- Decode reporttype strictly per your project dictionary
+    CASE 
+        WHEN reporttype = 1 THEN 'Spontaneous'
+        WHEN reporttype = 2 THEN 'Report from study'
+        WHEN reporttype = 3 THEN 'Other'
+        WHEN reporttype = 4 THEN 'Not available to sender (unknown)'
+        ELSE 'Unspecified'
+    END AS reporttype,
+
+    -- Decode serious in place
+    CASE 
+        WHEN serious = 1 THEN 'Yes'
+        WHEN serious = 2 THEN 'No'
+        ELSE 'Unspecified'
+    END AS serious,
+
+    -- Decode seriousness outcome flags in place
+    CASE WHEN seriousnessdeath = 1 THEN 'Yes' WHEN seriousnessdeath = 2 THEN 'No' ELSE 'No' END AS seriousnessdeath,
+    CASE WHEN seriousnessdisabling = 1 THEN 'Yes' WHEN seriousnessdisabling = 2 THEN 'No' ELSE 'No' END AS seriousnessdisabling,
+    CASE WHEN seriousnessother = 1 THEN 'Yes' WHEN seriousnessother = 2 THEN 'No' ELSE 'No' END AS seriousnessother,
+
+    patient_onset_age,
+    
+    -- Decode patient_onset_age_unit in place
+    CASE 
+        WHEN patient_onset_age_unit = 800 THEN 'Decade'
+        WHEN patient_onset_age_unit = 801 THEN 'Year'
+        WHEN patient_onset_age_unit = 802 THEN 'Month'
+        WHEN patient_onset_age_unit = 803 THEN 'Week'
+        WHEN patient_onset_age_unit = 804 THEN 'Day'
+        WHEN patient_onset_age_unit = 805 THEN 'Hour'
+        ELSE 'Unknown'
+    END AS patient_onset_age_unit,
+
+    -- Decode patient_sex in place
+    CASE 
+        WHEN patient_sex = 1 THEN 'Male'
+        WHEN patient_sex = 2 THEN 'Female'
+        WHEN patient_sex = 0 THEN 'Unknown (Missing, unspecified, or unclear data)'
+        ELSE 'Unknown'
+    END AS patient_sex,
+
+    patient_death_date
+
+FROM raw_reports
+  );
+[0m13:03:28.745516 [debug] [Thread-2 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m13:03:28.753774 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m13:03:28.754564 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m13:03:28.754884 [debug] [Thread-3 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m13:03:28.758147 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m13:03:28.758576 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions__dbt_tmp" rename to "stg_reactions"
+[0m13:03:28.761302 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m13:03:28.761720 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+alter table "airflow"."public"."stg_drugs__dbt_tmp" rename to "stg_drugs"
+[0m13:03:28.762222 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports__dbt_tmp" rename to "stg_reports"
+[0m13:03:28.765058 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m13:03:28.772119 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m13:03:28.777986 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m13:03:28.782262 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m13:03:28.783822 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m13:03:28.785197 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: COMMIT
+[0m13:03:28.785659 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m13:03:28.786130 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m13:03:28.786505 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m13:03:28.786936 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m13:03:28.787295 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m13:03:28.787861 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: COMMIT
+[0m13:03:28.801805 [debug] [Thread-2 (]: SQL status: COMMIT in 0.0 seconds
+[0m13:03:28.802283 [debug] [Thread-3 (]: SQL status: COMMIT in 0.0 seconds
+[0m13:03:28.810729 [debug] [Thread-2 (]: Applying DROP to: "airflow"."public"."stg_reactions__dbt_backup"
+[0m13:03:28.811400 [debug] [Thread-1 (]: SQL status: COMMIT in 0.0 seconds
+[0m13:03:28.814289 [debug] [Thread-3 (]: Applying DROP to: "airflow"."public"."stg_reports__dbt_backup"
+[0m13:03:28.826607 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m13:03:28.826976 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+drop view if exists "airflow"."public"."stg_reports__dbt_backup" cascade
+[0m13:03:28.821274 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m13:03:28.827419 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+drop view if exists "airflow"."public"."stg_reactions__dbt_backup" cascade
+[0m13:03:28.825665 [debug] [Thread-1 (]: Applying DROP to: "airflow"."public"."stg_drugs__dbt_backup"
+[0m13:03:28.828440 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m13:03:28.828785 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+drop view if exists "airflow"."public"."stg_drugs__dbt_backup" cascade
+[0m13:03:28.829213 [debug] [Thread-3 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m13:03:28.831003 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (execute): 13:03:28.691790 => 13:03:28.830795
+[0m13:03:28.831370 [debug] [Thread-3 (]: On model.fda_project.stg_reports: Close
+[0m13:03:28.829554 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m13:03:28.832175 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e78267dfe50>]}
+[0m13:03:28.832608 [debug] [Thread-2 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m13:03:28.844469 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (execute): 13:03:28.652535 => 13:03:28.838850
+[0m13:03:28.843017 [info ] [Thread-3 (]: 3 of 4 OK created sql view model public.stg_reports ............................ [[32mCREATE VIEW[0m in 0.20s]
+[0m13:03:28.845745 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (execute): 13:03:28.687254 => 13:03:28.844730
+[0m13:03:28.845222 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: Close
+[0m13:03:28.846402 [debug] [Thread-3 (]: Finished running node model.fda_project.stg_reports
+[0m13:03:28.847715 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e78271e1e10>]}
+[0m13:03:28.846792 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: Close
+[0m13:03:28.848407 [info ] [Thread-1 (]: 1 of 4 OK created sql view model public.stg_drugs .............................. [[32mCREATE VIEW[0m in 0.21s]
+[0m13:03:28.849602 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7828bcf4d0>]}
+[0m13:03:28.850241 [debug] [Thread-1 (]: Finished running node model.fda_project.stg_drugs
+[0m13:03:28.851144 [info ] [Thread-2 (]: 2 of 4 OK created sql view model public.stg_reactions .......................... [[32mCREATE VIEW[0m in 0.23s]
+[0m13:03:28.854955 [debug] [Thread-2 (]: Finished running node model.fda_project.stg_reactions
+[0m13:03:28.856111 [debug] [Thread-4 (]: Began running node model.fda_project.fct_fda_adverse_events
+[0m13:03:28.856709 [info ] [Thread-4 (]: 4 of 4 START sql table model public.fct_fda_adverse_events ..................... [RUN]
+[0m13:03:28.857842 [debug] [Thread-4 (]: Acquiring new postgres connection 'model.fda_project.fct_fda_adverse_events'
+[0m13:03:28.858345 [debug] [Thread-4 (]: Began compiling node model.fda_project.fct_fda_adverse_events
+[0m13:03:28.862219 [debug] [Thread-4 (]: Writing injected SQL for node "model.fda_project.fct_fda_adverse_events"
+[0m13:03:28.864115 [debug] [Thread-4 (]: Timing info for model.fda_project.fct_fda_adverse_events (compile): 13:03:28.858570 => 13:03:28.863682
+[0m13:03:28.864808 [debug] [Thread-4 (]: Began executing node model.fda_project.fct_fda_adverse_events
+[0m13:03:28.888730 [debug] [Thread-4 (]: Writing runtime sql for node "model.fda_project.fct_fda_adverse_events"
+[0m13:03:28.890094 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m13:03:28.890426 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: BEGIN
+[0m13:03:28.890719 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m13:03:28.898611 [debug] [Thread-4 (]: SQL status: BEGIN in 0.0 seconds
+[0m13:03:28.898981 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m13:03:28.899382 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.fct_fda_adverse_events"} */
+
+  
+    
+
+  create  table "airflow"."public"."fct_fda_adverse_events__dbt_tmp"
+  
+  
+    as
+  
+  (
+    WITH reports AS (
+    SELECT * FROM "airflow"."public"."stg_reports"
+),
+drugs AS (
+    SELECT * FROM "airflow"."public"."stg_drugs"
+),
+reactions AS (
+    SELECT * FROM "airflow"."public"."stg_reactions"
+)
+
+SELECT
+    r.safetyreportid,
+    r.safetyreportversion,
+    r.receivedate,
+    r.transmissiondate,
+    r.primarysourcecountry,
+    r.occurcountry,
+    r.reporttype,
+    r.serious,
+    r.seriousnessdeath,
+    r.seriousnessdisabling,
+    r.seriousnessother,
+    r.patient_onset_age,
+    r.patient_onset_age_unit,
+    r.patient_sex,
+    r.patient_death_date,
+    d.drug_id,
+    d.medicinal_product,
+    d.drug_characterization,
+    rx.reaction_id,
+    rx.reaction_meddra_pt
+FROM reports r
+LEFT JOIN drugs d ON r.safetyreportid = d.safetyreportid
+LEFT JOIN reactions rx ON r.safetyreportid = rx.safetyreportid
+  );
+  
+[0m13:06:57.438356 [debug] [Thread-4 (]: SQL status: SELECT 56434594 in 208.0 seconds
+[0m13:06:57.595148 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m13:06:57.595976 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.fct_fda_adverse_events"} */
+alter table "airflow"."public"."fct_fda_adverse_events__dbt_tmp" rename to "fct_fda_adverse_events"
+[0m13:06:57.605789 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m13:06:57.647686 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: COMMIT
+[0m13:06:57.648544 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m13:06:57.648915 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: COMMIT
+[0m13:06:57.655727 [debug] [Thread-4 (]: SQL status: COMMIT in 0.0 seconds
+[0m13:06:57.661362 [debug] [Thread-4 (]: Applying DROP to: "airflow"."public"."fct_fda_adverse_events__dbt_backup"
+[0m13:06:57.666318 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m13:06:57.666699 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.fct_fda_adverse_events"} */
+drop table if exists "airflow"."public"."fct_fda_adverse_events__dbt_backup" cascade
+[0m13:06:57.669732 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.0 seconds
+[0m13:06:57.683594 [debug] [Thread-4 (]: Timing info for model.fda_project.fct_fda_adverse_events (execute): 13:03:28.865113 => 13:06:57.680769
+[0m13:06:57.685209 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: Close
+[0m13:06:57.695574 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '7204f2fe-6fad-4e76-a708-5ba53d4104df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e78270af450>]}
+[0m13:06:57.705549 [info ] [Thread-4 (]: 4 of 4 OK created sql table model public.fct_fda_adverse_events ................ [[32mSELECT 56434594[0m in 208.83s]
+[0m13:06:57.707738 [debug] [Thread-4 (]: Finished running node model.fda_project.fct_fda_adverse_events
+[0m13:06:57.748286 [debug] [MainThread]: Using postgres connection "master"
+[0m13:06:57.749325 [debug] [MainThread]: On master: BEGIN
+[0m13:06:57.750453 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m13:06:57.784981 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m13:06:57.785492 [debug] [MainThread]: On master: COMMIT
+[0m13:06:57.785846 [debug] [MainThread]: Using postgres connection "master"
+[0m13:06:57.786128 [debug] [MainThread]: On master: COMMIT
+[0m13:06:57.786558 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m13:06:57.786855 [debug] [MainThread]: On master: Close
+[0m13:06:57.788419 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m13:06:57.788868 [debug] [MainThread]: Connection 'model.fda_project.stg_drugs' was properly closed.
+[0m13:06:57.789162 [debug] [MainThread]: Connection 'model.fda_project.stg_reactions' was properly closed.
+[0m13:06:57.789442 [debug] [MainThread]: Connection 'model.fda_project.stg_reports' was properly closed.
+[0m13:06:57.789720 [debug] [MainThread]: Connection 'model.fda_project.fct_fda_adverse_events' was properly closed.
+[0m13:06:57.792091 [info ] [MainThread]: 
+[0m13:06:57.793128 [info ] [MainThread]: Finished running 3 view models, 1 table model in 0 hours 3 minutes and 29.41 seconds (209.41s).
+[0m13:06:57.796237 [debug] [MainThread]: Command end result
+[0m13:06:57.885015 [info ] [MainThread]: 
+[0m13:06:57.885824 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m13:06:57.886553 [info ] [MainThread]: 
+[0m13:06:57.887578 [info ] [MainThread]: Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4
+[0m13:06:57.910475 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 210.88715, "process_user_time": 3.911216, "process_kernel_time": 2.339494, "process_mem_max_rss": "116048", "process_in_blocks": "728", "process_out_blocks": "3808"}
+[0m13:06:57.916725 [debug] [MainThread]: Command `dbt run` succeeded at 13:06:57.916431 after 210.90 seconds
+[0m13:06:57.920555 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e782730f810>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e782946f990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e782ca46790>]}
+[0m13:06:57.921127 [debug] [MainThread]: Flushing usage events
+[0m16:09:30.932245 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad6efcb90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad6f33290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad745b710>]}
+
+
+============================== 16:09:30.950005 | 7e304864-f225-45e0-bf2d-20cf8d6c5f64 ==============================
+[0m16:09:30.950005 [info ] [MainThread]: Running with dbt=1.7.19
+[0m16:09:30.951064 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/root/.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': '/usr/app/logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt run', 'send_anonymous_usage_stats': 'True'}
+[0m16:09:32.041863 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '7e304864-f225-45e0-bf2d-20cf8d6c5f64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad584bf50>]}
+[0m16:09:32.190299 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '7e304864-f225-45e0-bf2d-20cf8d6c5f64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad583f150>]}
+[0m16:09:32.193627 [info ] [MainThread]: Registered adapter: postgres=1.7.19
+[0m16:09:32.217059 [debug] [MainThread]: checksum: a8d43cdff37d0f32d7fbe4c5c25bea4bb6c86e162f8ce8fdb1a38cdcf7495431, vars: {}, profile: , target: , version: 1.7.19
+[0m16:09:32.511144 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m16:09:32.512098 [debug] [MainThread]: Partial parsing: updated file: fda_project://models/staging/stg_drugs.sql
+[0m16:09:32.927176 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '7e304864-f225-45e0-bf2d-20cf8d6c5f64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad5662510>]}
+[0m16:09:33.019303 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '7e304864-f225-45e0-bf2d-20cf8d6c5f64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad55e9790>]}
+[0m16:09:33.020136 [info ] [MainThread]: Found 4 models, 3 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models
+[0m16:09:33.020747 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '7e304864-f225-45e0-bf2d-20cf8d6c5f64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad745b7d0>]}
+[0m16:09:33.023910 [info ] [MainThread]: 
+[0m16:09:33.025385 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m16:09:33.028137 [debug] [ThreadPool]: Acquiring new postgres connection 'list_airflow'
+[0m16:09:33.054769 [debug] [ThreadPool]: Using postgres connection "list_airflow"
+[0m16:09:33.055930 [debug] [ThreadPool]: On list_airflow: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m16:09:33.057462 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:09:33.239179 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.0 seconds
+[0m16:09:33.241825 [debug] [ThreadPool]: On list_airflow: Close
+[0m16:09:33.245496 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_airflow, now list_airflow_public)
+[0m16:09:33.258504 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:09:33.259302 [debug] [ThreadPool]: On list_airflow_public: BEGIN
+[0m16:09:33.259831 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:09:33.285424 [debug] [ThreadPool]: SQL status: BEGIN in 0.0 seconds
+[0m16:09:33.286100 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:09:33.286695 [debug] [ThreadPool]: On list_airflow_public: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow_public"} */
+select
+      'airflow' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m16:09:33.427193 [debug] [ThreadPool]: SQL status: SELECT 49 in 0.0 seconds
+[0m16:09:33.429611 [debug] [ThreadPool]: On list_airflow_public: ROLLBACK
+[0m16:09:33.430418 [debug] [ThreadPool]: On list_airflow_public: Close
+[0m16:09:33.451601 [debug] [MainThread]: Using postgres connection "master"
+[0m16:09:33.453307 [debug] [MainThread]: On master: BEGIN
+[0m16:09:33.453943 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:09:33.512489 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:09:33.513405 [debug] [MainThread]: Using postgres connection "master"
+[0m16:09:33.514257 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m16:09:33.637011 [debug] [MainThread]: SQL status: SELECT 3 in 0.0 seconds
+[0m16:09:33.639446 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '7e304864-f225-45e0-bf2d-20cf8d6c5f64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad5550450>]}
+[0m16:09:33.640014 [debug] [MainThread]: On master: ROLLBACK
+[0m16:09:33.640655 [debug] [MainThread]: Using postgres connection "master"
+[0m16:09:33.641055 [debug] [MainThread]: On master: BEGIN
+[0m16:09:33.641703 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:09:33.642066 [debug] [MainThread]: On master: COMMIT
+[0m16:09:33.642430 [debug] [MainThread]: Using postgres connection "master"
+[0m16:09:33.642745 [debug] [MainThread]: On master: COMMIT
+[0m16:09:33.643373 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m16:09:33.643738 [debug] [MainThread]: On master: Close
+[0m16:09:33.646657 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m16:09:33.647266 [info ] [MainThread]: 
+[0m16:09:33.698425 [debug] [Thread-1 (]: Began running node model.fda_project.stg_drugs
+[0m16:09:33.699362 [debug] [Thread-2 (]: Began running node model.fda_project.stg_reactions
+[0m16:09:33.701899 [info ] [Thread-1 (]: 1 of 4 START sql view model public.stg_drugs ................................... [RUN]
+[0m16:09:33.700070 [debug] [Thread-3 (]: Began running node model.fda_project.stg_reports
+[0m16:09:33.704250 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_airflow_public, now model.fda_project.stg_drugs)
+[0m16:09:33.703248 [info ] [Thread-2 (]: 2 of 4 START sql view model public.stg_reactions ............................... [RUN]
+[0m16:09:33.705364 [debug] [Thread-1 (]: Began compiling node model.fda_project.stg_drugs
+[0m16:09:33.704804 [info ] [Thread-3 (]: 3 of 4 START sql view model public.stg_reports ................................. [RUN]
+[0m16:09:33.710350 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.fda_project.stg_reactions'
+[0m16:09:33.729803 [debug] [Thread-2 (]: Began compiling node model.fda_project.stg_reactions
+[0m16:09:33.728855 [debug] [Thread-1 (]: Writing injected SQL for node "model.fda_project.stg_drugs"
+[0m16:09:33.721031 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.fda_project.stg_reports'
+[0m16:09:33.735532 [debug] [Thread-3 (]: Began compiling node model.fda_project.stg_reports
+[0m16:09:33.734337 [debug] [Thread-2 (]: Writing injected SQL for node "model.fda_project.stg_reactions"
+[0m16:09:33.745601 [debug] [Thread-3 (]: Writing injected SQL for node "model.fda_project.stg_reports"
+[0m16:09:33.746964 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (compile): 16:09:33.730349 => 16:09:33.746549
+[0m16:09:33.747732 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (compile): 16:09:33.710773 => 16:09:33.747457
+[0m16:09:33.749789 [debug] [Thread-1 (]: Began executing node model.fda_project.stg_drugs
+[0m16:09:33.748561 [debug] [Thread-2 (]: Began executing node model.fda_project.stg_reactions
+[0m16:09:33.749287 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (compile): 16:09:33.735924 => 16:09:33.749014
+[0m16:09:33.834108 [debug] [Thread-3 (]: Began executing node model.fda_project.stg_reports
+[0m16:09:33.838474 [debug] [Thread-1 (]: Writing runtime sql for node "model.fda_project.stg_drugs"
+[0m16:09:33.839489 [debug] [Thread-2 (]: Writing runtime sql for node "model.fda_project.stg_reactions"
+[0m16:09:33.850261 [debug] [Thread-3 (]: Writing runtime sql for node "model.fda_project.stg_reports"
+[0m16:09:33.854025 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:09:33.854747 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:09:33.855270 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:09:33.855795 [debug] [Thread-3 (]: On model.fda_project.stg_reports: BEGIN
+[0m16:09:33.856518 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: BEGIN
+[0m16:09:33.857105 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: BEGIN
+[0m16:09:33.857692 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m16:09:33.858225 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m16:09:33.858734 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:09:33.870921 [debug] [Thread-3 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:09:33.871790 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:09:33.872724 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+
+  create view "airflow"."public"."stg_reports__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reports AS (
+    SELECT * FROM "airflow"."public"."reports"
+)
+
+SELECT
+    safetyreportid,
+    safetyreportversion,
+    receivedate,
+    transmissiondate,
+    primarysourcecountry,
+    occurcountry,
+    
+    -- Decode reporttype strictly per your project dictionary
+    CASE 
+        WHEN reporttype = 1 THEN 'Spontaneous'
+        WHEN reporttype = 2 THEN 'Report from study'
+        WHEN reporttype = 3 THEN 'Other'
+        WHEN reporttype = 4 THEN 'Not available to sender (unknown)'
+        ELSE 'Unspecified'
+    END AS reporttype,
+
+    -- Decode serious in place
+    CASE 
+        WHEN serious = 1 THEN 'Yes'
+        WHEN serious = 2 THEN 'No'
+        ELSE 'Unspecified'
+    END AS serious,
+
+    -- Decode seriousness outcome flags in place
+    CASE WHEN seriousnessdeath = 1 THEN 'Yes' WHEN seriousnessdeath = 2 THEN 'No' ELSE 'No' END AS seriousnessdeath,
+    CASE WHEN seriousnessdisabling = 1 THEN 'Yes' WHEN seriousnessdisabling = 2 THEN 'No' ELSE 'No' END AS seriousnessdisabling,
+    CASE WHEN seriousnessother = 1 THEN 'Yes' WHEN seriousnessother = 2 THEN 'No' ELSE 'No' END AS seriousnessother,
+
+    patient_onset_age,
+    
+    -- Decode patient_onset_age_unit in place
+    CASE 
+        WHEN patient_onset_age_unit = 800 THEN 'Decade'
+        WHEN patient_onset_age_unit = 801 THEN 'Year'
+        WHEN patient_onset_age_unit = 802 THEN 'Month'
+        WHEN patient_onset_age_unit = 803 THEN 'Week'
+        WHEN patient_onset_age_unit = 804 THEN 'Day'
+        WHEN patient_onset_age_unit = 805 THEN 'Hour'
+        ELSE 'Unknown'
+    END AS patient_onset_age_unit,
+
+    -- Decode patient_sex in place
+    CASE 
+        WHEN patient_sex = 1 THEN 'Male'
+        WHEN patient_sex = 2 THEN 'Female'
+        WHEN patient_sex = 0 THEN 'Unknown (Missing, unspecified, or unclear data)'
+        ELSE 'Unknown'
+    END AS patient_sex,
+
+    patient_death_date
+
+FROM raw_reports
+  );
+[0m16:09:33.891936 [debug] [Thread-1 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:09:33.892638 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:09:33.893185 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+
+  create view "airflow"."public"."stg_drugs__dbt_tmp"
+    
+    
+  as (
+    WITH raw_drugs AS (
+    SELECT * FROM "airflow"."public"."drugs"
+)
+
+SELECT
+    drug_id,
+    safetyreportid,
+    -- Strips non-alphanumeric characters from the start, then trims and capitalizes
+    UPPER(TRIM(REGEXP_REPLACE(medicinal_product, '^[^a-zA-Z0-9]+', ''))) AS medicinal_product,
+    -- Basic text trim/case standard to prevent visualization duplicates
+    UPPER(TRIM(medicinal_product)) AS medicinal_product,
+    
+    -- Decode drug_characterization in place based on your dictionary
+    CASE 
+        WHEN drug_characterization = 1 THEN 'Suspect'
+        WHEN drug_characterization = 2 THEN 'Concomitant'
+        WHEN drug_characterization = 3 THEN 'Interacting'
+        ELSE 'Unspecified'
+    END AS drug_characterization
+
+FROM raw_drugs
+  );
+[0m16:09:33.905876 [debug] [Thread-1 (]: Postgres adapter: Postgres error: column "medicinal_product" specified more than once
+
+[0m16:09:33.907519 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: ROLLBACK
+[0m16:09:33.909356 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (execute): 16:09:33.750089 => 16:09:33.908629
+[0m16:09:33.910352 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: Close
+[0m16:09:33.920867 [debug] [Thread-2 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:09:33.921582 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:09:33.922033 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+
+  create view "airflow"."public"."stg_reactions__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reactions AS (
+    SELECT * FROM "airflow"."public"."reactions"
+)
+
+SELECT
+    reaction_id,
+    safetyreportid,
+    -- Trim whitespace and handle occasional missing values safely
+    COALESCE(TRIM(reaction_meddra_pt), 'Unknown/Unspecified Term') AS reaction_meddra_pt
+
+FROM raw_reactions
+  );
+[0m16:09:33.934583 [debug] [Thread-3 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:09:33.946158 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:09:33.947236 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports" rename to "stg_reports__dbt_backup"
+[0m16:09:33.947977 [debug] [Thread-2 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:09:33.956943 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:09:33.968006 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:09:33.970327 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:09:33.971281 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions" rename to "stg_reactions__dbt_backup"
+[0m16:09:33.972551 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports__dbt_tmp" rename to "stg_reports"
+[0m16:09:33.974420 [debug] [Thread-1 (]: Database Error in model stg_drugs (models/staging/stg_drugs.sql)
+  column "medicinal_product" specified more than once
+  compiled Code at target/run/fda_project/models/staging/stg_drugs.sql
+[0m16:09:33.975899 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '7e304864-f225-45e0-bf2d-20cf8d6c5f64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad5558090>]}
+[0m16:09:33.976711 [error] [Thread-1 (]: 1 of 4 ERROR creating sql view model public.stg_drugs .......................... [[31mERROR[0m in 0.27s]
+[0m16:09:33.977761 [debug] [Thread-1 (]: Finished running node model.fda_project.stg_drugs
+[0m16:09:33.979831 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:09:33.985465 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:09:33.986021 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions__dbt_tmp" rename to "stg_reactions"
+[0m16:09:33.988005 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:09:34.002216 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:09:34.010565 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:09:34.012896 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:09:34.013371 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:09:34.013818 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:09:34.014212 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:09:34.014606 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:09:34.018615 [debug] [Thread-2 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:09:34.024825 [debug] [Thread-2 (]: Applying DROP to: "airflow"."public"."stg_reactions__dbt_backup"
+[0m16:09:34.025263 [debug] [Thread-3 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:09:34.031836 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:09:34.035429 [debug] [Thread-3 (]: Applying DROP to: "airflow"."public"."stg_reports__dbt_backup"
+[0m16:09:34.035991 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+drop view if exists "airflow"."public"."stg_reactions__dbt_backup" cascade
+[0m16:09:34.036955 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:09:34.037679 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+drop view if exists "airflow"."public"."stg_reports__dbt_backup" cascade
+[0m16:09:34.056270 [debug] [Thread-2 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:09:34.057873 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (execute): 16:09:33.791537 => 16:09:34.057668
+[0m16:09:34.058198 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: Close
+[0m16:09:34.058557 [debug] [Thread-3 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:09:34.059816 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (execute): 16:09:33.839952 => 16:09:34.059618
+[0m16:09:34.060378 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '7e304864-f225-45e0-bf2d-20cf8d6c5f64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad4aa7dd0>]}
+[0m16:09:34.060755 [debug] [Thread-3 (]: On model.fda_project.stg_reports: Close
+[0m16:09:34.061766 [info ] [Thread-2 (]: 2 of 4 OK created sql view model public.stg_reactions .......................... [[32mCREATE VIEW[0m in 0.35s]
+[0m16:09:34.063174 [debug] [Thread-2 (]: Finished running node model.fda_project.stg_reactions
+[0m16:09:34.064011 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '7e304864-f225-45e0-bf2d-20cf8d6c5f64', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad55e3790>]}
+[0m16:09:34.064958 [info ] [Thread-3 (]: 3 of 4 OK created sql view model public.stg_reports ............................ [[32mCREATE VIEW[0m in 0.35s]
+[0m16:09:34.065595 [debug] [Thread-3 (]: Finished running node model.fda_project.stg_reports
+[0m16:09:34.066639 [debug] [Thread-4 (]: Began running node model.fda_project.fct_fda_adverse_events
+[0m16:09:34.067156 [info ] [Thread-4 (]: 4 of 4 SKIP relation public.fct_fda_adverse_events ............................. [[33mSKIP[0m]
+[0m16:09:34.067523 [debug] [Thread-4 (]: Finished running node model.fda_project.fct_fda_adverse_events
+[0m16:09:34.069211 [debug] [MainThread]: Using postgres connection "master"
+[0m16:09:34.069486 [debug] [MainThread]: On master: BEGIN
+[0m16:09:34.069814 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:09:34.078864 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:09:34.079361 [debug] [MainThread]: On master: COMMIT
+[0m16:09:34.079697 [debug] [MainThread]: Using postgres connection "master"
+[0m16:09:34.079977 [debug] [MainThread]: On master: COMMIT
+[0m16:09:34.080464 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m16:09:34.080784 [debug] [MainThread]: On master: Close
+[0m16:09:34.081407 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:09:34.081704 [debug] [MainThread]: Connection 'model.fda_project.stg_drugs' was properly closed.
+[0m16:09:34.081968 [debug] [MainThread]: Connection 'model.fda_project.stg_reactions' was properly closed.
+[0m16:09:34.082283 [debug] [MainThread]: Connection 'model.fda_project.stg_reports' was properly closed.
+[0m16:09:34.082707 [info ] [MainThread]: 
+[0m16:09:34.083314 [info ] [MainThread]: Finished running 3 view models, 1 table model in 0 hours 0 minutes and 1.06 seconds (1.06s).
+[0m16:09:34.084264 [debug] [MainThread]: Command end result
+[0m16:09:34.123452 [info ] [MainThread]: 
+[0m16:09:34.124004 [info ] [MainThread]: [31mCompleted with 1 error and 0 warnings:[0m
+[0m16:09:34.124409 [info ] [MainThread]: 
+[0m16:09:34.124708 [error] [MainThread]:   Database Error in model stg_drugs (models/staging/stg_drugs.sql)
+  column "medicinal_product" specified more than once
+  compiled Code at target/run/fda_project/models/staging/stg_drugs.sql
+[0m16:09:34.125004 [info ] [MainThread]: 
+[0m16:09:34.125265 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=1 SKIP=1 TOTAL=4
+[0m16:09:34.128872 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 3.265706, "process_user_time": 3.541746, "process_kernel_time": 6.311262, "process_mem_max_rss": "113192", "process_in_blocks": "112168", "process_out_blocks": "3776", "command_success": false}
+[0m16:09:34.129545 [debug] [MainThread]: Command `dbt run` failed at 16:09:34.129351 after 3.27 seconds
+[0m16:09:34.129904 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faadaf90350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad7b643d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7faad6ee1390>]}
+[0m16:09:34.130297 [debug] [MainThread]: Flushing usage events
+[0m16:12:24.279330 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d5acc12d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d5acd3610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d5b2f5d50>]}
+
+
+============================== 16:12:24.293603 | 76af8c16-d369-4e6f-9df4-42b64c92241e ==============================
+[0m16:12:24.293603 [info ] [MainThread]: Running with dbt=1.7.19
+[0m16:12:24.294335 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/root/.dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/usr/app/logs', 'debug': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'invocation_command': 'dbt run', 'send_anonymous_usage_stats': 'True'}
+[0m16:12:24.528204 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '76af8c16-d369-4e6f-9df4-42b64c92241e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d59587dd0>]}
+[0m16:12:24.596048 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '76af8c16-d369-4e6f-9df4-42b64c92241e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d5b2f5c50>]}
+[0m16:12:24.597439 [info ] [MainThread]: Registered adapter: postgres=1.7.19
+[0m16:12:24.604233 [debug] [MainThread]: checksum: a8d43cdff37d0f32d7fbe4c5c25bea4bb6c86e162f8ce8fdb1a38cdcf7495431, vars: {}, profile: , target: , version: 1.7.19
+[0m16:12:24.645369 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m16:12:24.646210 [debug] [MainThread]: Partial parsing: updated file: fda_project://models/staging/stg_drugs.sql
+[0m16:12:24.843498 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '76af8c16-d369-4e6f-9df4-42b64c92241e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d5942b090>]}
+[0m16:12:24.859141 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '76af8c16-d369-4e6f-9df4-42b64c92241e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d59388f10>]}
+[0m16:12:24.859600 [info ] [MainThread]: Found 4 models, 3 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models
+[0m16:12:24.859961 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '76af8c16-d369-4e6f-9df4-42b64c92241e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d59346e10>]}
+[0m16:12:24.861440 [info ] [MainThread]: 
+[0m16:12:24.862463 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m16:12:24.863727 [debug] [ThreadPool]: Acquiring new postgres connection 'list_airflow'
+[0m16:12:24.874404 [debug] [ThreadPool]: Using postgres connection "list_airflow"
+[0m16:12:24.874798 [debug] [ThreadPool]: On list_airflow: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m16:12:24.875111 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:12:24.895642 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.0 seconds
+[0m16:12:24.897001 [debug] [ThreadPool]: On list_airflow: Close
+[0m16:12:24.898675 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_airflow, now list_airflow_public)
+[0m16:12:24.903998 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:12:24.904393 [debug] [ThreadPool]: On list_airflow_public: BEGIN
+[0m16:12:24.904634 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:12:24.922434 [debug] [ThreadPool]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:24.922795 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:12:24.923188 [debug] [ThreadPool]: On list_airflow_public: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow_public"} */
+select
+      'airflow' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m16:12:24.943499 [debug] [ThreadPool]: SQL status: SELECT 49 in 0.0 seconds
+[0m16:12:24.945562 [debug] [ThreadPool]: On list_airflow_public: ROLLBACK
+[0m16:12:24.946183 [debug] [ThreadPool]: On list_airflow_public: Close
+[0m16:12:24.959869 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:24.960323 [debug] [MainThread]: On master: BEGIN
+[0m16:12:24.960627 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:12:24.985036 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:24.985504 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:24.985876 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m16:12:25.004616 [debug] [MainThread]: SQL status: SELECT 3 in 0.0 seconds
+[0m16:12:25.006903 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '76af8c16-d369-4e6f-9df4-42b64c92241e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d58b40250>]}
+[0m16:12:25.007345 [debug] [MainThread]: On master: ROLLBACK
+[0m16:12:25.007826 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:25.008147 [debug] [MainThread]: On master: BEGIN
+[0m16:12:25.008906 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:25.009257 [debug] [MainThread]: On master: COMMIT
+[0m16:12:25.009578 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:25.009880 [debug] [MainThread]: On master: COMMIT
+[0m16:12:25.010442 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m16:12:25.010884 [debug] [MainThread]: On master: Close
+[0m16:12:25.011684 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m16:12:25.012079 [info ] [MainThread]: 
+[0m16:12:25.023460 [debug] [Thread-1 (]: Began running node model.fda_project.stg_drugs
+[0m16:12:25.024081 [debug] [Thread-2 (]: Began running node model.fda_project.stg_reactions
+[0m16:12:25.024585 [info ] [Thread-1 (]: 1 of 4 START sql view model public.stg_drugs ................................... [RUN]
+[0m16:12:25.027134 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_airflow_public, now model.fda_project.stg_drugs)
+[0m16:12:25.025269 [info ] [Thread-2 (]: 2 of 4 START sql view model public.stg_reactions ............................... [RUN]
+[0m16:12:25.027587 [debug] [Thread-1 (]: Began compiling node model.fda_project.stg_drugs
+[0m16:12:25.025831 [debug] [Thread-3 (]: Began running node model.fda_project.stg_reports
+[0m16:12:25.028963 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.fda_project.stg_reactions'
+[0m16:12:25.036593 [debug] [Thread-1 (]: Writing injected SQL for node "model.fda_project.stg_drugs"
+[0m16:12:25.037757 [debug] [Thread-2 (]: Began compiling node model.fda_project.stg_reactions
+[0m16:12:25.037242 [info ] [Thread-3 (]: 3 of 4 START sql view model public.stg_reports ................................. [RUN]
+[0m16:12:25.042157 [debug] [Thread-2 (]: Writing injected SQL for node "model.fda_project.stg_reactions"
+[0m16:12:25.043760 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.fda_project.stg_reports'
+[0m16:12:25.045362 [debug] [Thread-3 (]: Began compiling node model.fda_project.stg_reports
+[0m16:12:25.044449 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (compile): 16:12:25.029549 => 16:12:25.044075
+[0m16:12:25.051472 [debug] [Thread-3 (]: Writing injected SQL for node "model.fda_project.stg_reports"
+[0m16:12:25.052920 [debug] [Thread-1 (]: Began executing node model.fda_project.stg_drugs
+[0m16:12:25.053903 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (compile): 16:12:25.038840 => 16:12:25.053385
+[0m16:12:25.060230 [debug] [Thread-2 (]: Began executing node model.fda_project.stg_reactions
+[0m16:12:25.090837 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (compile): 16:12:25.045720 => 16:12:25.090093
+[0m16:12:25.119156 [debug] [Thread-3 (]: Began executing node model.fda_project.stg_reports
+[0m16:12:25.142919 [debug] [Thread-1 (]: Writing runtime sql for node "model.fda_project.stg_drugs"
+[0m16:12:25.145263 [debug] [Thread-3 (]: Writing runtime sql for node "model.fda_project.stg_reports"
+[0m16:12:25.146858 [debug] [Thread-2 (]: Writing runtime sql for node "model.fda_project.stg_reactions"
+[0m16:12:25.147728 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:25.148203 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:12:25.148499 [debug] [Thread-3 (]: On model.fda_project.stg_reports: BEGIN
+[0m16:12:25.149044 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:25.149503 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: BEGIN
+[0m16:12:25.149909 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m16:12:25.150454 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: BEGIN
+[0m16:12:25.151096 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:12:25.151987 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m16:12:25.161087 [debug] [Thread-3 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:25.161870 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:25.162274 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+
+  create view "airflow"."public"."stg_reports__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reports AS (
+    SELECT * FROM "airflow"."public"."reports"
+)
+
+SELECT
+    safetyreportid,
+    safetyreportversion,
+    receivedate,
+    transmissiondate,
+    primarysourcecountry,
+    occurcountry,
+    
+    -- Decode reporttype strictly per your project dictionary
+    CASE 
+        WHEN reporttype = 1 THEN 'Spontaneous'
+        WHEN reporttype = 2 THEN 'Report from study'
+        WHEN reporttype = 3 THEN 'Other'
+        WHEN reporttype = 4 THEN 'Not available to sender (unknown)'
+        ELSE 'Unspecified'
+    END AS reporttype,
+
+    -- Decode serious in place
+    CASE 
+        WHEN serious = 1 THEN 'Yes'
+        WHEN serious = 2 THEN 'No'
+        ELSE 'Unspecified'
+    END AS serious,
+
+    -- Decode seriousness outcome flags in place
+    CASE WHEN seriousnessdeath = 1 THEN 'Yes' WHEN seriousnessdeath = 2 THEN 'No' ELSE 'No' END AS seriousnessdeath,
+    CASE WHEN seriousnessdisabling = 1 THEN 'Yes' WHEN seriousnessdisabling = 2 THEN 'No' ELSE 'No' END AS seriousnessdisabling,
+    CASE WHEN seriousnessother = 1 THEN 'Yes' WHEN seriousnessother = 2 THEN 'No' ELSE 'No' END AS seriousnessother,
+
+    patient_onset_age,
+    
+    -- Decode patient_onset_age_unit in place
+    CASE 
+        WHEN patient_onset_age_unit = 800 THEN 'Decade'
+        WHEN patient_onset_age_unit = 801 THEN 'Year'
+        WHEN patient_onset_age_unit = 802 THEN 'Month'
+        WHEN patient_onset_age_unit = 803 THEN 'Week'
+        WHEN patient_onset_age_unit = 804 THEN 'Day'
+        WHEN patient_onset_age_unit = 805 THEN 'Hour'
+        ELSE 'Unknown'
+    END AS patient_onset_age_unit,
+
+    -- Decode patient_sex in place
+    CASE 
+        WHEN patient_sex = 1 THEN 'Male'
+        WHEN patient_sex = 2 THEN 'Female'
+        WHEN patient_sex = 0 THEN 'Unknown (Missing, unspecified, or unclear data)'
+        ELSE 'Unknown'
+    END AS patient_sex,
+
+    patient_death_date
+
+FROM raw_reports
+  );
+[0m16:12:25.167726 [debug] [Thread-2 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:25.168294 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:25.168796 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+
+  create view "airflow"."public"."stg_reactions__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reactions AS (
+    SELECT * FROM "airflow"."public"."reactions"
+)
+
+SELECT
+    reaction_id,
+    safetyreportid,
+    -- Trim whitespace and handle occasional missing values safely
+    COALESCE(TRIM(reaction_meddra_pt), 'Unknown/Unspecified Term') AS reaction_meddra_pt
+
+FROM raw_reactions
+  );
+[0m16:12:25.169542 [debug] [Thread-1 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:25.170307 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:12:25.170683 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+
+  create view "airflow"."public"."stg_drugs__dbt_tmp"
+    
+    
+  as (
+    SELECT
+    drug_id,
+    safetyreportid,
+    -- This single line handles the regex cleaning, trimming, AND capitalizing all at once!
+    UPPER(TRIM(REGEXP_REPLACE(medicinal_product, '^[^a-zA-Z0-9]+', ''))) AS medicinal_product,
+    
+    -- Decode drug_characterization in place based on your dictionary
+    CASE 
+        WHEN drug_characterization = 1 THEN 'Suspect'
+        WHEN drug_characterization = 2 THEN 'Concomitant'
+        WHEN drug_characterization = 3 THEN 'Interacting'
+        ELSE 'Unspecified'
+    END AS drug_characterization
+
+FROM raw_drugs
+  );
+[0m16:12:25.172025 [debug] [Thread-1 (]: Postgres adapter: Postgres error: relation "raw_drugs" does not exist
+LINE 21: FROM raw_drugs
+              ^
+
+[0m16:12:25.172394 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: ROLLBACK
+[0m16:12:25.172763 [debug] [Thread-3 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:12:25.181653 [debug] [Thread-2 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:12:25.186809 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:25.180790 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:25.187906 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (execute): 16:12:25.054551 => 16:12:25.187539
+[0m16:12:25.188368 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions" rename to "stg_reactions__dbt_backup"
+[0m16:12:25.188887 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports" rename to "stg_reports__dbt_backup"
+[0m16:12:25.189413 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: Close
+[0m16:12:25.191949 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:12:25.192388 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:12:25.196305 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:25.199944 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:25.200772 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions__dbt_tmp" rename to "stg_reactions"
+[0m16:12:25.201611 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports__dbt_tmp" rename to "stg_reports"
+[0m16:12:25.204261 [debug] [Thread-1 (]: Database Error in model stg_drugs (models/staging/stg_drugs.sql)
+  relation "raw_drugs" does not exist
+  LINE 21: FROM raw_drugs
+                ^
+  compiled Code at target/run/fda_project/models/staging/stg_drugs.sql
+[0m16:12:25.204785 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:12:25.205371 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '76af8c16-d369-4e6f-9df4-42b64c92241e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d58b561d0>]}
+[0m16:12:25.211015 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:12:25.224267 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:12:25.225017 [error] [Thread-1 (]: 1 of 4 ERROR creating sql view model public.stg_drugs .......................... [[31mERROR[0m in 0.18s]
+[0m16:12:25.227194 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:12:25.227716 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:25.228419 [debug] [Thread-1 (]: Finished running node model.fda_project.stg_drugs
+[0m16:12:25.228818 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:25.229665 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:12:25.231593 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:12:25.235194 [debug] [Thread-2 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:12:25.241042 [debug] [Thread-2 (]: Applying DROP to: "airflow"."public"."stg_reactions__dbt_backup"
+[0m16:12:25.241542 [debug] [Thread-3 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:12:25.248243 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:25.251816 [debug] [Thread-3 (]: Applying DROP to: "airflow"."public"."stg_reports__dbt_backup"
+[0m16:12:25.253104 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+drop view if exists "airflow"."public"."stg_reactions__dbt_backup" cascade
+[0m16:12:25.254992 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:25.255799 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+drop view if exists "airflow"."public"."stg_reports__dbt_backup" cascade
+[0m16:12:25.261896 [debug] [Thread-2 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:12:25.263341 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (execute): 16:12:25.060676 => 16:12:25.263164
+[0m16:12:25.263646 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: Close
+[0m16:12:25.264494 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '76af8c16-d369-4e6f-9df4-42b64c92241e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d592e5490>]}
+[0m16:12:25.264909 [debug] [Thread-3 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:12:25.265602 [info ] [Thread-2 (]: 2 of 4 OK created sql view model public.stg_reactions .......................... [[32mCREATE VIEW[0m in 0.24s]
+[0m16:12:25.267329 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (execute): 16:12:25.136248 => 16:12:25.267150
+[0m16:12:25.267965 [debug] [Thread-2 (]: Finished running node model.fda_project.stg_reactions
+[0m16:12:25.268531 [debug] [Thread-3 (]: On model.fda_project.stg_reports: Close
+[0m16:12:25.270039 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '76af8c16-d369-4e6f-9df4-42b64c92241e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d58b42d50>]}
+[0m16:12:25.270596 [info ] [Thread-3 (]: 3 of 4 OK created sql view model public.stg_reports ............................ [[32mCREATE VIEW[0m in 0.23s]
+[0m16:12:25.271129 [debug] [Thread-3 (]: Finished running node model.fda_project.stg_reports
+[0m16:12:25.272063 [debug] [Thread-4 (]: Began running node model.fda_project.fct_fda_adverse_events
+[0m16:12:25.272891 [info ] [Thread-4 (]: 4 of 4 SKIP relation public.fct_fda_adverse_events ............................. [[33mSKIP[0m]
+[0m16:12:25.273625 [debug] [Thread-4 (]: Finished running node model.fda_project.fct_fda_adverse_events
+[0m16:12:25.276813 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:25.277471 [debug] [MainThread]: On master: BEGIN
+[0m16:12:25.277788 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:12:25.298755 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:25.299176 [debug] [MainThread]: On master: COMMIT
+[0m16:12:25.299424 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:25.299689 [debug] [MainThread]: On master: COMMIT
+[0m16:12:25.300093 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m16:12:25.300396 [debug] [MainThread]: On master: Close
+[0m16:12:25.301128 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:12:25.301546 [debug] [MainThread]: Connection 'model.fda_project.stg_drugs' was properly closed.
+[0m16:12:25.301974 [debug] [MainThread]: Connection 'model.fda_project.stg_reactions' was properly closed.
+[0m16:12:25.302357 [debug] [MainThread]: Connection 'model.fda_project.stg_reports' was properly closed.
+[0m16:12:25.302885 [info ] [MainThread]: 
+[0m16:12:25.303515 [info ] [MainThread]: Finished running 3 view models, 1 table model in 0 hours 0 minutes and 0.44 seconds (0.44s).
+[0m16:12:25.304671 [debug] [MainThread]: Command end result
+[0m16:12:25.328311 [info ] [MainThread]: 
+[0m16:12:25.328718 [info ] [MainThread]: [31mCompleted with 1 error and 0 warnings:[0m
+[0m16:12:25.328968 [info ] [MainThread]: 
+[0m16:12:25.329303 [error] [MainThread]:   Database Error in model stg_drugs (models/staging/stg_drugs.sql)
+  relation "raw_drugs" does not exist
+  LINE 21: FROM raw_drugs
+                ^
+  compiled Code at target/run/fda_project/models/staging/stg_drugs.sql
+[0m16:12:25.329572 [info ] [MainThread]: 
+[0m16:12:25.329861 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=1 SKIP=1 TOTAL=4
+[0m16:12:25.330758 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 1.1235485, "process_user_time": 2.913618, "process_kernel_time": 0.733414, "process_mem_max_rss": "114500", "process_in_blocks": "1192", "process_out_blocks": "3768", "command_success": false}
+[0m16:12:25.331271 [debug] [MainThread]: Command `dbt run` failed at 16:12:25.331165 after 1.12 seconds
+[0m16:12:25.331589 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d5ed38310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d5b2f5650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c5d5ac82fd0>]}
+[0m16:12:25.332071 [debug] [MainThread]: Flushing usage events
+[0m16:12:42.015859 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de766b150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de76babd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de7669a90>]}
+
+
+============================== 16:12:42.023442 | 238d26a4-adee-4aae-906a-c02cadcea7c1 ==============================
+[0m16:12:42.023442 [info ] [MainThread]: Running with dbt=1.7.19
+[0m16:12:42.024033 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/root/.dbt', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/usr/app/logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt run', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m16:12:42.190865 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '238d26a4-adee-4aae-906a-c02cadcea7c1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de5f72c90>]}
+[0m16:12:42.251170 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '238d26a4-adee-4aae-906a-c02cadcea7c1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de7ccdd90>]}
+[0m16:12:42.252183 [info ] [MainThread]: Registered adapter: postgres=1.7.19
+[0m16:12:42.260186 [debug] [MainThread]: checksum: a8d43cdff37d0f32d7fbe4c5c25bea4bb6c86e162f8ce8fdb1a38cdcf7495431, vars: {}, profile: , target: , version: 1.7.19
+[0m16:12:42.291532 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m16:12:42.291904 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m16:12:42.297189 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '238d26a4-adee-4aae-906a-c02cadcea7c1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de5d1c090>]}
+[0m16:12:42.310344 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '238d26a4-adee-4aae-906a-c02cadcea7c1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de5e37b90>]}
+[0m16:12:42.310776 [info ] [MainThread]: Found 4 models, 3 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models
+[0m16:12:42.311108 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '238d26a4-adee-4aae-906a-c02cadcea7c1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de5f786d0>]}
+[0m16:12:42.312639 [info ] [MainThread]: 
+[0m16:12:42.313383 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m16:12:42.314918 [debug] [ThreadPool]: Acquiring new postgres connection 'list_airflow'
+[0m16:12:42.327138 [debug] [ThreadPool]: Using postgres connection "list_airflow"
+[0m16:12:42.327554 [debug] [ThreadPool]: On list_airflow: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m16:12:42.327862 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:12:42.352233 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.0 seconds
+[0m16:12:42.354375 [debug] [ThreadPool]: On list_airflow: Close
+[0m16:12:42.357678 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_airflow, now list_airflow_public)
+[0m16:12:42.366403 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:12:42.367068 [debug] [ThreadPool]: On list_airflow_public: BEGIN
+[0m16:12:42.367408 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:12:42.380360 [debug] [ThreadPool]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:42.381119 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:12:42.381850 [debug] [ThreadPool]: On list_airflow_public: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow_public"} */
+select
+      'airflow' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m16:12:42.405521 [debug] [ThreadPool]: SQL status: SELECT 49 in 0.0 seconds
+[0m16:12:42.409121 [debug] [ThreadPool]: On list_airflow_public: ROLLBACK
+[0m16:12:42.410187 [debug] [ThreadPool]: On list_airflow_public: Close
+[0m16:12:42.430715 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:42.431352 [debug] [MainThread]: On master: BEGIN
+[0m16:12:42.432015 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:12:42.444483 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:42.445119 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:42.445973 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m16:12:42.475446 [debug] [MainThread]: SQL status: SELECT 3 in 0.0 seconds
+[0m16:12:42.478037 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '238d26a4-adee-4aae-906a-c02cadcea7c1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de785c4d0>]}
+[0m16:12:42.478645 [debug] [MainThread]: On master: ROLLBACK
+[0m16:12:42.479613 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:42.480060 [debug] [MainThread]: On master: BEGIN
+[0m16:12:42.480992 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:42.481752 [debug] [MainThread]: On master: COMMIT
+[0m16:12:42.482236 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:42.482851 [debug] [MainThread]: On master: COMMIT
+[0m16:12:42.483526 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m16:12:42.483937 [debug] [MainThread]: On master: Close
+[0m16:12:42.485005 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m16:12:42.485723 [info ] [MainThread]: 
+[0m16:12:42.496948 [debug] [Thread-1 (]: Began running node model.fda_project.stg_drugs
+[0m16:12:42.497707 [debug] [Thread-2 (]: Began running node model.fda_project.stg_reactions
+[0m16:12:42.499040 [debug] [Thread-3 (]: Began running node model.fda_project.stg_reports
+[0m16:12:42.498384 [info ] [Thread-1 (]: 1 of 4 START sql view model public.stg_drugs ................................... [RUN]
+[0m16:12:42.500219 [info ] [Thread-2 (]: 2 of 4 START sql view model public.stg_reactions ............................... [RUN]
+[0m16:12:42.502376 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_airflow_public, now model.fda_project.stg_drugs)
+[0m16:12:42.501014 [info ] [Thread-3 (]: 3 of 4 START sql view model public.stg_reports ................................. [RUN]
+[0m16:12:42.503437 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.fda_project.stg_reactions'
+[0m16:12:42.503930 [debug] [Thread-1 (]: Began compiling node model.fda_project.stg_drugs
+[0m16:12:42.505291 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.fda_project.stg_reports'
+[0m16:12:42.505958 [debug] [Thread-2 (]: Began compiling node model.fda_project.stg_reactions
+[0m16:12:42.512962 [debug] [Thread-1 (]: Writing injected SQL for node "model.fda_project.stg_drugs"
+[0m16:12:42.514206 [debug] [Thread-3 (]: Began compiling node model.fda_project.stg_reports
+[0m16:12:42.519866 [debug] [Thread-2 (]: Writing injected SQL for node "model.fda_project.stg_reactions"
+[0m16:12:42.526336 [debug] [Thread-3 (]: Writing injected SQL for node "model.fda_project.stg_reports"
+[0m16:12:42.527569 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (compile): 16:12:42.506392 => 16:12:42.527144
+[0m16:12:42.528569 [debug] [Thread-1 (]: Began executing node model.fda_project.stg_drugs
+[0m16:12:42.529601 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (compile): 16:12:42.520589 => 16:12:42.529222
+[0m16:12:42.530102 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (compile): 16:12:42.515274 => 16:12:42.529841
+[0m16:12:42.551334 [debug] [Thread-3 (]: Began executing node model.fda_project.stg_reports
+[0m16:12:42.615660 [debug] [Thread-1 (]: Writing runtime sql for node "model.fda_project.stg_drugs"
+[0m16:12:42.616232 [debug] [Thread-2 (]: Began executing node model.fda_project.stg_reactions
+[0m16:12:42.622480 [debug] [Thread-3 (]: Writing runtime sql for node "model.fda_project.stg_reports"
+[0m16:12:42.630708 [debug] [Thread-2 (]: Writing runtime sql for node "model.fda_project.stg_reactions"
+[0m16:12:42.631618 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:12:42.632833 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: BEGIN
+[0m16:12:42.633341 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:42.633860 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:12:42.634267 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:42.634730 [debug] [Thread-3 (]: On model.fda_project.stg_reports: BEGIN
+[0m16:12:42.635431 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: BEGIN
+[0m16:12:42.636254 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m16:12:42.636931 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m16:12:42.644410 [debug] [Thread-1 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:42.645024 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:12:42.645655 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+
+  create view "airflow"."public"."stg_drugs__dbt_tmp"
+    
+    
+  as (
+    SELECT
+    drug_id,
+    safetyreportid,
+    -- This single line handles the regex cleaning, trimming, AND capitalizing all at once!
+    UPPER(TRIM(REGEXP_REPLACE(medicinal_product, '^[^a-zA-Z0-9]+', ''))) AS medicinal_product,
+    
+    -- Decode drug_characterization in place based on your dictionary
+    CASE 
+        WHEN drug_characterization = 1 THEN 'Suspect'
+        WHEN drug_characterization = 2 THEN 'Concomitant'
+        WHEN drug_characterization = 3 THEN 'Interacting'
+        ELSE 'Unspecified'
+    END AS drug_characterization
+
+FROM raw_drugs
+  );
+[0m16:12:42.646789 [debug] [Thread-1 (]: Postgres adapter: Postgres error: relation "raw_drugs" does not exist
+LINE 21: FROM raw_drugs
+              ^
+
+[0m16:12:42.647438 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: ROLLBACK
+[0m16:12:42.648713 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (execute): 16:12:42.530350 => 16:12:42.648361
+[0m16:12:42.649279 [debug] [Thread-2 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:42.649778 [debug] [Thread-3 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:42.650380 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: Close
+[0m16:12:42.651029 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:42.651639 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:42.653141 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+
+  create view "airflow"."public"."stg_reactions__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reactions AS (
+    SELECT * FROM "airflow"."public"."reactions"
+)
+
+SELECT
+    reaction_id,
+    safetyreportid,
+    -- Trim whitespace and handle occasional missing values safely
+    COALESCE(TRIM(reaction_meddra_pt), 'Unknown/Unspecified Term') AS reaction_meddra_pt
+
+FROM raw_reactions
+  );
+[0m16:12:42.658635 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+
+  create view "airflow"."public"."stg_reports__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reports AS (
+    SELECT * FROM "airflow"."public"."reports"
+)
+
+SELECT
+    safetyreportid,
+    safetyreportversion,
+    receivedate,
+    transmissiondate,
+    primarysourcecountry,
+    occurcountry,
+    
+    -- Decode reporttype strictly per your project dictionary
+    CASE 
+        WHEN reporttype = 1 THEN 'Spontaneous'
+        WHEN reporttype = 2 THEN 'Report from study'
+        WHEN reporttype = 3 THEN 'Other'
+        WHEN reporttype = 4 THEN 'Not available to sender (unknown)'
+        ELSE 'Unspecified'
+    END AS reporttype,
+
+    -- Decode serious in place
+    CASE 
+        WHEN serious = 1 THEN 'Yes'
+        WHEN serious = 2 THEN 'No'
+        ELSE 'Unspecified'
+    END AS serious,
+
+    -- Decode seriousness outcome flags in place
+    CASE WHEN seriousnessdeath = 1 THEN 'Yes' WHEN seriousnessdeath = 2 THEN 'No' ELSE 'No' END AS seriousnessdeath,
+    CASE WHEN seriousnessdisabling = 1 THEN 'Yes' WHEN seriousnessdisabling = 2 THEN 'No' ELSE 'No' END AS seriousnessdisabling,
+    CASE WHEN seriousnessother = 1 THEN 'Yes' WHEN seriousnessother = 2 THEN 'No' ELSE 'No' END AS seriousnessother,
+
+    patient_onset_age,
+    
+    -- Decode patient_onset_age_unit in place
+    CASE 
+        WHEN patient_onset_age_unit = 800 THEN 'Decade'
+        WHEN patient_onset_age_unit = 801 THEN 'Year'
+        WHEN patient_onset_age_unit = 802 THEN 'Month'
+        WHEN patient_onset_age_unit = 803 THEN 'Week'
+        WHEN patient_onset_age_unit = 804 THEN 'Day'
+        WHEN patient_onset_age_unit = 805 THEN 'Hour'
+        ELSE 'Unknown'
+    END AS patient_onset_age_unit,
+
+    -- Decode patient_sex in place
+    CASE 
+        WHEN patient_sex = 1 THEN 'Male'
+        WHEN patient_sex = 2 THEN 'Female'
+        WHEN patient_sex = 0 THEN 'Unknown (Missing, unspecified, or unclear data)'
+        ELSE 'Unknown'
+    END AS patient_sex,
+
+    patient_death_date
+
+FROM raw_reports
+  );
+[0m16:12:42.666676 [debug] [Thread-1 (]: Database Error in model stg_drugs (models/staging/stg_drugs.sql)
+  relation "raw_drugs" does not exist
+  LINE 21: FROM raw_drugs
+                ^
+  compiled Code at target/run/fda_project/models/staging/stg_drugs.sql
+[0m16:12:42.667399 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '238d26a4-adee-4aae-906a-c02cadcea7c1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de5c2cb10>]}
+[0m16:12:42.668524 [error] [Thread-1 (]: 1 of 4 ERROR creating sql view model public.stg_drugs .......................... [[31mERROR[0m in 0.17s]
+[0m16:12:42.669379 [debug] [Thread-1 (]: Finished running node model.fda_project.stg_drugs
+[0m16:12:42.670060 [debug] [Thread-2 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:12:42.673380 [debug] [Thread-3 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:12:42.681624 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:42.688297 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:42.689208 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions" rename to "stg_reactions__dbt_backup"
+[0m16:12:42.690179 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports" rename to "stg_reports__dbt_backup"
+[0m16:12:42.691912 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:12:42.692484 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:12:42.696750 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:42.701099 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:42.701829 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports__dbt_tmp" rename to "stg_reports"
+[0m16:12:42.702364 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions__dbt_tmp" rename to "stg_reactions"
+[0m16:12:42.704184 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:12:42.711575 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:12:42.726474 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:12:42.729217 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:12:42.729843 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:42.730355 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:42.730822 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:12:42.731315 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:12:42.735917 [debug] [Thread-2 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:12:42.743879 [debug] [Thread-2 (]: Applying DROP to: "airflow"."public"."stg_reactions__dbt_backup"
+[0m16:12:42.744745 [debug] [Thread-3 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:12:42.751121 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:12:42.754125 [debug] [Thread-3 (]: Applying DROP to: "airflow"."public"."stg_reports__dbt_backup"
+[0m16:12:42.754646 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+drop view if exists "airflow"."public"."stg_reactions__dbt_backup" cascade
+[0m16:12:42.755827 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:12:42.756335 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+drop view if exists "airflow"."public"."stg_reports__dbt_backup" cascade
+[0m16:12:42.763560 [debug] [Thread-2 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:12:42.765344 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (execute): 16:12:42.623605 => 16:12:42.765150
+[0m16:12:42.765700 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: Close
+[0m16:12:42.766494 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '238d26a4-adee-4aae-906a-c02cadcea7c1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de5ee1310>]}
+[0m16:12:42.767355 [info ] [Thread-2 (]: 2 of 4 OK created sql view model public.stg_reactions .......................... [[32mCREATE VIEW[0m in 0.26s]
+[0m16:12:42.768247 [debug] [Thread-2 (]: Finished running node model.fda_project.stg_reactions
+[0m16:12:42.770256 [debug] [Thread-3 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:12:42.772294 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (execute): 16:12:42.616587 => 16:12:42.771975
+[0m16:12:42.772860 [debug] [Thread-3 (]: On model.fda_project.stg_reports: Close
+[0m16:12:42.773832 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '238d26a4-adee-4aae-906a-c02cadcea7c1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de7669310>]}
+[0m16:12:42.774920 [info ] [Thread-3 (]: 3 of 4 OK created sql view model public.stg_reports ............................ [[32mCREATE VIEW[0m in 0.27s]
+[0m16:12:42.778250 [debug] [Thread-3 (]: Finished running node model.fda_project.stg_reports
+[0m16:12:42.779985 [debug] [Thread-4 (]: Began running node model.fda_project.fct_fda_adverse_events
+[0m16:12:42.780711 [info ] [Thread-4 (]: 4 of 4 SKIP relation public.fct_fda_adverse_events ............................. [[33mSKIP[0m]
+[0m16:12:42.781223 [debug] [Thread-4 (]: Finished running node model.fda_project.fct_fda_adverse_events
+[0m16:12:42.784129 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:42.784672 [debug] [MainThread]: On master: BEGIN
+[0m16:12:42.785107 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:12:42.795774 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:12:42.796926 [debug] [MainThread]: On master: COMMIT
+[0m16:12:42.797465 [debug] [MainThread]: Using postgres connection "master"
+[0m16:12:42.797920 [debug] [MainThread]: On master: COMMIT
+[0m16:12:42.798635 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m16:12:42.799051 [debug] [MainThread]: On master: Close
+[0m16:12:42.799807 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:12:42.800181 [debug] [MainThread]: Connection 'model.fda_project.stg_drugs' was properly closed.
+[0m16:12:42.800492 [debug] [MainThread]: Connection 'model.fda_project.stg_reactions' was properly closed.
+[0m16:12:42.800735 [debug] [MainThread]: Connection 'model.fda_project.stg_reports' was properly closed.
+[0m16:12:42.801113 [info ] [MainThread]: 
+[0m16:12:42.801445 [info ] [MainThread]: Finished running 3 view models, 1 table model in 0 hours 0 minutes and 0.49 seconds (0.49s).
+[0m16:12:42.802609 [debug] [MainThread]: Command end result
+[0m16:12:42.826509 [info ] [MainThread]: 
+[0m16:12:42.827395 [info ] [MainThread]: [31mCompleted with 1 error and 0 warnings:[0m
+[0m16:12:42.830113 [info ] [MainThread]: 
+[0m16:12:42.830649 [error] [MainThread]:   Database Error in model stg_drugs (models/staging/stg_drugs.sql)
+  relation "raw_drugs" does not exist
+  LINE 21: FROM raw_drugs
+                ^
+  compiled Code at target/run/fda_project/models/staging/stg_drugs.sql
+[0m16:12:42.831333 [info ] [MainThread]: 
+[0m16:12:42.832041 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=1 SKIP=1 TOTAL=4
+[0m16:12:42.834507 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.829333, "process_user_time": 2.493672, "process_kernel_time": 0.468314, "process_mem_max_rss": "112016", "process_in_blocks": "192", "process_out_blocks": "2992", "command_success": false}
+[0m16:12:42.836844 [debug] [MainThread]: Command `dbt run` failed at 16:12:42.836497 after 0.83 seconds
+[0m16:12:42.839899 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de82ec3d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794deb6245d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x794de5e97c10>]}
+[0m16:12:42.841254 [debug] [MainThread]: Flushing usage events
+[0m16:14:54.891746 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e8ce7550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e8e95110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e9355c10>]}
+
+
+============================== 16:14:54.899293 | 5032cea7-1b9f-4d72-b588-d8a7b75f45f3 ==============================
+[0m16:14:54.899293 [info ] [MainThread]: Running with dbt=1.7.19
+[0m16:14:54.899836 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/root/.dbt', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/usr/app/logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'static_parser': 'True', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'invocation_command': 'dbt run', 'send_anonymous_usage_stats': 'True'}
+[0m16:14:55.043765 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e75fab90>]}
+[0m16:14:55.103375 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e9f92ad0>]}
+[0m16:14:55.104136 [info ] [MainThread]: Registered adapter: postgres=1.7.19
+[0m16:14:55.110930 [debug] [MainThread]: checksum: a8d43cdff37d0f32d7fbe4c5c25bea4bb6c86e162f8ce8fdb1a38cdcf7495431, vars: {}, profile: , target: , version: 1.7.19
+[0m16:14:55.152471 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m16:14:55.153262 [debug] [MainThread]: Partial parsing: updated file: fda_project://models/staging/stg_drugs.sql
+[0m16:14:55.283036 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e74cb010>]}
+[0m16:14:55.294352 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e73992d0>]}
+[0m16:14:55.294776 [info ] [MainThread]: Found 4 models, 3 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models
+[0m16:14:55.295100 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e759ab10>]}
+[0m16:14:55.296589 [info ] [MainThread]: 
+[0m16:14:55.297295 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m16:14:55.298701 [debug] [ThreadPool]: Acquiring new postgres connection 'list_airflow'
+[0m16:14:55.310504 [debug] [ThreadPool]: Using postgres connection "list_airflow"
+[0m16:14:55.310889 [debug] [ThreadPool]: On list_airflow: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m16:14:55.311261 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:14:55.332722 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.0 seconds
+[0m16:14:55.334202 [debug] [ThreadPool]: On list_airflow: Close
+[0m16:14:55.336096 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_airflow, now list_airflow_public)
+[0m16:14:55.342244 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:14:55.342763 [debug] [ThreadPool]: On list_airflow_public: BEGIN
+[0m16:14:55.343121 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:14:55.356273 [debug] [ThreadPool]: SQL status: BEGIN in 0.0 seconds
+[0m16:14:55.356870 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:14:55.357313 [debug] [ThreadPool]: On list_airflow_public: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow_public"} */
+select
+      'airflow' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m16:14:55.370071 [debug] [ThreadPool]: SQL status: SELECT 49 in 0.0 seconds
+[0m16:14:55.371718 [debug] [ThreadPool]: On list_airflow_public: ROLLBACK
+[0m16:14:55.372276 [debug] [ThreadPool]: On list_airflow_public: Close
+[0m16:14:55.382959 [debug] [MainThread]: Using postgres connection "master"
+[0m16:14:55.384198 [debug] [MainThread]: On master: BEGIN
+[0m16:14:55.384703 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:14:55.403374 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:14:55.403792 [debug] [MainThread]: Using postgres connection "master"
+[0m16:14:55.404105 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m16:14:55.426009 [debug] [MainThread]: SQL status: SELECT 3 in 0.0 seconds
+[0m16:14:55.427762 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e759bb50>]}
+[0m16:14:55.428124 [debug] [MainThread]: On master: ROLLBACK
+[0m16:14:55.428621 [debug] [MainThread]: Using postgres connection "master"
+[0m16:14:55.428874 [debug] [MainThread]: On master: BEGIN
+[0m16:14:55.429534 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:14:55.429862 [debug] [MainThread]: On master: COMMIT
+[0m16:14:55.430182 [debug] [MainThread]: Using postgres connection "master"
+[0m16:14:55.430460 [debug] [MainThread]: On master: COMMIT
+[0m16:14:55.430907 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m16:14:55.431421 [debug] [MainThread]: On master: Close
+[0m16:14:55.432443 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m16:14:55.432813 [info ] [MainThread]: 
+[0m16:14:55.451136 [debug] [Thread-1 (]: Began running node model.fda_project.stg_drugs
+[0m16:14:55.451745 [debug] [Thread-2 (]: Began running node model.fda_project.stg_reactions
+[0m16:14:55.452302 [debug] [Thread-3 (]: Began running node model.fda_project.stg_reports
+[0m16:14:55.452751 [info ] [Thread-1 (]: 1 of 4 START sql view model public.stg_drugs ................................... [RUN]
+[0m16:14:55.453332 [info ] [Thread-2 (]: 2 of 4 START sql view model public.stg_reactions ............................... [RUN]
+[0m16:14:55.453888 [info ] [Thread-3 (]: 3 of 4 START sql view model public.stg_reports ................................. [RUN]
+[0m16:14:55.454820 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_airflow_public, now model.fda_project.stg_drugs)
+[0m16:14:55.456423 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.fda_project.stg_reactions'
+[0m16:14:55.457517 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.fda_project.stg_reports'
+[0m16:14:55.458088 [debug] [Thread-1 (]: Began compiling node model.fda_project.stg_drugs
+[0m16:14:55.458825 [debug] [Thread-2 (]: Began compiling node model.fda_project.stg_reactions
+[0m16:14:55.459582 [debug] [Thread-3 (]: Began compiling node model.fda_project.stg_reports
+[0m16:14:55.474876 [debug] [Thread-2 (]: Writing injected SQL for node "model.fda_project.stg_reactions"
+[0m16:14:55.475817 [debug] [Thread-1 (]: Writing injected SQL for node "model.fda_project.stg_drugs"
+[0m16:14:55.479670 [debug] [Thread-3 (]: Writing injected SQL for node "model.fda_project.stg_reports"
+[0m16:14:55.481787 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (compile): 16:14:55.470839 => 16:14:55.481493
+[0m16:14:55.482396 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (compile): 16:14:55.459979 => 16:14:55.482152
+[0m16:14:55.483001 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (compile): 16:14:55.476338 => 16:14:55.482713
+[0m16:14:55.483609 [debug] [Thread-2 (]: Began executing node model.fda_project.stg_reactions
+[0m16:14:55.484352 [debug] [Thread-1 (]: Began executing node model.fda_project.stg_drugs
+[0m16:14:55.484897 [debug] [Thread-3 (]: Began executing node model.fda_project.stg_reports
+[0m16:14:55.543184 [debug] [Thread-2 (]: Writing runtime sql for node "model.fda_project.stg_reactions"
+[0m16:14:55.544231 [debug] [Thread-1 (]: Writing runtime sql for node "model.fda_project.stg_drugs"
+[0m16:14:55.545305 [debug] [Thread-3 (]: Writing runtime sql for node "model.fda_project.stg_reports"
+[0m16:14:55.546795 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:14:55.547226 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: BEGIN
+[0m16:14:55.547806 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m16:14:55.548232 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:14:55.548818 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:14:55.549154 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: BEGIN
+[0m16:14:55.549450 [debug] [Thread-3 (]: On model.fda_project.stg_reports: BEGIN
+[0m16:14:55.549887 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:14:55.550247 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m16:14:55.558767 [debug] [Thread-3 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:14:55.559331 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:14:55.559693 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+
+  create view "airflow"."public"."stg_reports__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reports AS (
+    SELECT * FROM "airflow"."public"."reports"
+)
+
+SELECT
+    safetyreportid,
+    safetyreportversion,
+    receivedate,
+    transmissiondate,
+    primarysourcecountry,
+    occurcountry,
+    
+    -- Decode reporttype strictly per your project dictionary
+    CASE 
+        WHEN reporttype = 1 THEN 'Spontaneous'
+        WHEN reporttype = 2 THEN 'Report from study'
+        WHEN reporttype = 3 THEN 'Other'
+        WHEN reporttype = 4 THEN 'Not available to sender (unknown)'
+        ELSE 'Unspecified'
+    END AS reporttype,
+
+    -- Decode serious in place
+    CASE 
+        WHEN serious = 1 THEN 'Yes'
+        WHEN serious = 2 THEN 'No'
+        ELSE 'Unspecified'
+    END AS serious,
+
+    -- Decode seriousness outcome flags in place
+    CASE WHEN seriousnessdeath = 1 THEN 'Yes' WHEN seriousnessdeath = 2 THEN 'No' ELSE 'No' END AS seriousnessdeath,
+    CASE WHEN seriousnessdisabling = 1 THEN 'Yes' WHEN seriousnessdisabling = 2 THEN 'No' ELSE 'No' END AS seriousnessdisabling,
+    CASE WHEN seriousnessother = 1 THEN 'Yes' WHEN seriousnessother = 2 THEN 'No' ELSE 'No' END AS seriousnessother,
+
+    patient_onset_age,
+    
+    -- Decode patient_onset_age_unit in place
+    CASE 
+        WHEN patient_onset_age_unit = 800 THEN 'Decade'
+        WHEN patient_onset_age_unit = 801 THEN 'Year'
+        WHEN patient_onset_age_unit = 802 THEN 'Month'
+        WHEN patient_onset_age_unit = 803 THEN 'Week'
+        WHEN patient_onset_age_unit = 804 THEN 'Day'
+        WHEN patient_onset_age_unit = 805 THEN 'Hour'
+        ELSE 'Unknown'
+    END AS patient_onset_age_unit,
+
+    -- Decode patient_sex in place
+    CASE 
+        WHEN patient_sex = 1 THEN 'Male'
+        WHEN patient_sex = 2 THEN 'Female'
+        WHEN patient_sex = 0 THEN 'Unknown (Missing, unspecified, or unclear data)'
+        ELSE 'Unknown'
+    END AS patient_sex,
+
+    patient_death_date
+
+FROM raw_reports
+  );
+[0m16:14:55.560124 [debug] [Thread-1 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:14:55.560550 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:14:55.561016 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+
+  create view "airflow"."public"."stg_drugs__dbt_tmp"
+    
+    
+  as (
+    WITH raw_drugs AS (
+    SELECT * FROM "airflow"."public"."drugs"
+)
+
+SELECT
+    drug_id,
+    safetyreportid,
+    -- Strips non-alphanumeric characters from the start, then trims and capitalizes
+    UPPER(TRIM(REGEXP_REPLACE(medicinal_product, '^[^a-zA-Z0-9]+', ''))) AS medicinal_product,
+    
+    CASE 
+        WHEN drug_characterization = 1 THEN 'Suspect'
+        WHEN drug_characterization = 2 THEN 'Concomitant'
+        WHEN drug_characterization = 3 THEN 'Interacting'
+        ELSE 'Unspecified'
+    END AS drug_characterization
+
+FROM raw_drugs
+  );
+[0m16:14:55.561361 [debug] [Thread-2 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:14:55.561970 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:14:55.562254 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+
+  create view "airflow"."public"."stg_reactions__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reactions AS (
+    SELECT * FROM "airflow"."public"."reactions"
+)
+
+SELECT
+    reaction_id,
+    safetyreportid,
+    -- Trim whitespace and handle occasional missing values safely
+    COALESCE(TRIM(reaction_meddra_pt), 'Unknown/Unspecified Term') AS reaction_meddra_pt
+
+FROM raw_reactions
+  );
+[0m16:14:55.567862 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:14:55.568550 [debug] [Thread-2 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:14:55.576091 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:14:55.576986 [debug] [Thread-3 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:14:55.580975 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:14:55.581531 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+alter table "airflow"."public"."stg_drugs" rename to "stg_drugs__dbt_backup"
+[0m16:14:55.584961 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:14:55.585510 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions" rename to "stg_reactions__dbt_backup"
+[0m16:14:55.586161 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports" rename to "stg_reports__dbt_backup"
+[0m16:14:55.587095 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:14:55.587430 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:14:55.590472 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:14:55.590782 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:14:55.593251 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:14:55.593645 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions__dbt_tmp" rename to "stg_reactions"
+[0m16:14:55.595970 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:14:55.596868 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+alter table "airflow"."public"."stg_drugs__dbt_tmp" rename to "stg_drugs"
+[0m16:14:55.596365 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports__dbt_tmp" rename to "stg_reports"
+[0m16:14:55.597330 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:14:55.597761 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:14:55.598373 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:14:55.618308 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:14:55.618991 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: COMMIT
+[0m16:14:55.621955 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:14:55.622501 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:14:55.622991 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:14:55.623521 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:14:55.623916 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:14:55.624333 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: COMMIT
+[0m16:14:55.624692 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:14:55.626899 [debug] [Thread-2 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:14:55.632316 [debug] [Thread-2 (]: Applying DROP to: "airflow"."public"."stg_reactions__dbt_backup"
+[0m16:14:55.632866 [debug] [Thread-3 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:14:55.633155 [debug] [Thread-1 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:14:55.638618 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:14:55.642317 [debug] [Thread-3 (]: Applying DROP to: "airflow"."public"."stg_reports__dbt_backup"
+[0m16:14:55.644451 [debug] [Thread-1 (]: Applying DROP to: "airflow"."public"."stg_drugs__dbt_backup"
+[0m16:14:55.644882 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+drop view if exists "airflow"."public"."stg_reactions__dbt_backup" cascade
+[0m16:14:55.645624 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:14:55.646350 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:14:55.646878 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+drop view if exists "airflow"."public"."stg_reports__dbt_backup" cascade
+[0m16:14:55.647285 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+drop view if exists "airflow"."public"."stg_drugs__dbt_backup" cascade
+[0m16:14:55.650343 [debug] [Thread-2 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:14:55.653320 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (execute): 16:14:55.485242 => 16:14:55.653010
+[0m16:14:55.653736 [debug] [Thread-3 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:14:55.654132 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:14:55.654488 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: Close
+[0m16:14:55.655803 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (execute): 16:14:55.534261 => 16:14:55.655642
+[0m16:14:55.657048 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (execute): 16:14:55.501355 => 16:14:55.656887
+[0m16:14:55.657526 [debug] [Thread-3 (]: On model.fda_project.stg_reports: Close
+[0m16:14:55.658395 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e6a39890>]}
+[0m16:14:55.658720 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: Close
+[0m16:14:55.659928 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e6a0c4d0>]}
+[0m16:14:55.659310 [info ] [Thread-2 (]: 2 of 4 OK created sql view model public.stg_reactions .......................... [[32mCREATE VIEW[0m in 0.20s]
+[0m16:14:55.660651 [info ] [Thread-3 (]: 3 of 4 OK created sql view model public.stg_reports ............................ [[32mCREATE VIEW[0m in 0.20s]
+[0m16:14:55.661209 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e6a3d190>]}
+[0m16:14:55.661747 [debug] [Thread-2 (]: Finished running node model.fda_project.stg_reactions
+[0m16:14:55.662238 [debug] [Thread-3 (]: Finished running node model.fda_project.stg_reports
+[0m16:14:55.662687 [info ] [Thread-1 (]: 1 of 4 OK created sql view model public.stg_drugs .............................. [[32mCREATE VIEW[0m in 0.21s]
+[0m16:14:55.663796 [debug] [Thread-1 (]: Finished running node model.fda_project.stg_drugs
+[0m16:14:55.664672 [debug] [Thread-4 (]: Began running node model.fda_project.fct_fda_adverse_events
+[0m16:14:55.665239 [info ] [Thread-4 (]: 4 of 4 START sql table model public.fct_fda_adverse_events ..................... [RUN]
+[0m16:14:55.666135 [debug] [Thread-4 (]: Acquiring new postgres connection 'model.fda_project.fct_fda_adverse_events'
+[0m16:14:55.666609 [debug] [Thread-4 (]: Began compiling node model.fda_project.fct_fda_adverse_events
+[0m16:14:55.670629 [debug] [Thread-4 (]: Writing injected SQL for node "model.fda_project.fct_fda_adverse_events"
+[0m16:14:55.672444 [debug] [Thread-4 (]: Timing info for model.fda_project.fct_fda_adverse_events (compile): 16:14:55.666989 => 16:14:55.672106
+[0m16:14:55.672955 [debug] [Thread-4 (]: Began executing node model.fda_project.fct_fda_adverse_events
+[0m16:14:55.704720 [debug] [Thread-4 (]: Writing runtime sql for node "model.fda_project.fct_fda_adverse_events"
+[0m16:14:55.705913 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m16:14:55.706285 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: BEGIN
+[0m16:14:55.706657 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m16:14:55.715842 [debug] [Thread-4 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:14:55.716567 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m16:14:55.716895 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.fct_fda_adverse_events"} */
+
+  
+    
+
+  create  table "airflow"."public"."fct_fda_adverse_events__dbt_tmp"
+  
+  
+    as
+  
+  (
+    WITH reports AS (
+    SELECT * FROM "airflow"."public"."stg_reports"
+),
+drugs AS (
+    SELECT * FROM "airflow"."public"."stg_drugs"
+),
+reactions AS (
+    SELECT * FROM "airflow"."public"."stg_reactions"
+)
+
+SELECT
+    r.safetyreportid,
+    r.safetyreportversion,
+    r.receivedate,
+    r.transmissiondate,
+    r.primarysourcecountry,
+    r.occurcountry,
+    r.reporttype,
+    r.serious,
+    r.seriousnessdeath,
+    r.seriousnessdisabling,
+    r.seriousnessother,
+    r.patient_onset_age,
+    r.patient_onset_age_unit,
+    r.patient_sex,
+    r.patient_death_date,
+    d.drug_id,
+    d.medicinal_product,
+    d.drug_characterization,
+    rx.reaction_id,
+    rx.reaction_meddra_pt
+FROM reports r
+LEFT JOIN drugs d ON r.safetyreportid = d.safetyreportid
+LEFT JOIN reactions rx ON r.safetyreportid = rx.safetyreportid
+  );
+  
+[0m16:17:44.853529 [debug] [MainThread]: Postgres adapter: Cancelling query 'model.fda_project.fct_fda_adverse_events' (11887)
+[0m16:17:44.862681 [debug] [MainThread]: Using postgres connection "master"
+[0m16:17:44.863057 [debug] [MainThread]: On master: BEGIN
+[0m16:17:44.863635 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:17:44.884653 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:17:44.885210 [debug] [MainThread]: Using postgres connection "master"
+[0m16:17:44.885513 [debug] [MainThread]: On master: select pg_terminate_backend(11887)
+[0m16:17:44.890595 [debug] [MainThread]: SQL status: SELECT 1 in 0.0 seconds
+[0m16:17:44.891456 [debug] [MainThread]: Postgres adapter: Cancel query 'model.fda_project.fct_fda_adverse_events': (True,)
+[0m16:17:44.893669 [error] [MainThread]: CANCEL query model.fda_project.stg_drugs ....................................... [[31mCANCEL[0m]
+[0m16:17:44.895306 [error] [MainThread]: CANCEL query model.fda_project.stg_reactions ................................... [[31mCANCEL[0m]
+[0m16:17:44.895736 [error] [MainThread]: CANCEL query model.fda_project.stg_reports ..................................... [[31mCANCEL[0m]
+[0m16:17:44.896189 [error] [MainThread]: CANCEL query model.fda_project.fct_fda_adverse_events .......................... [[31mCANCEL[0m]
+[0m16:17:44.896789 [debug] [MainThread]: On master: ROLLBACK
+[0m16:17:44.897776 [debug] [MainThread]: On master: Close
+[0m16:17:45.584502 [debug] [Thread-4 (]: Postgres adapter: Postgres error: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[0m16:17:45.585243 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: ROLLBACK
+[0m16:17:45.597353 [debug] [Thread-4 (]: Failed to rollback 'model.fda_project.fct_fda_adverse_events'
+[0m16:17:45.599752 [debug] [Thread-4 (]: Timing info for model.fda_project.fct_fda_adverse_events (execute): 16:14:55.673235 => 16:17:45.598641
+[0m16:17:45.600469 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: Close
+[0m16:17:45.611838 [debug] [Thread-4 (]: Database Error in model fct_fda_adverse_events (models/marts/fct_fda_adverse_events.sql)
+  server closed the connection unexpectedly
+  	This probably means the server terminated abnormally
+  	before or while processing the request.
+  compiled Code at target/run/fda_project/models/marts/fct_fda_adverse_events.sql
+[0m16:17:45.614827 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5032cea7-1b9f-4d72-b588-d8a7b75f45f3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e759bb50>]}
+[0m16:17:45.619619 [error] [Thread-4 (]: 4 of 4 ERROR creating sql table model public.fct_fda_adverse_events ............ [[31mERROR[0m in 169.95s]
+[0m16:17:45.620562 [debug] [Thread-4 (]: Finished running node model.fda_project.fct_fda_adverse_events
+[0m16:17:45.621776 [info ] [MainThread]: 
+[0m16:17:45.622847 [info ] [MainThread]: [33mExited because of keyboard interrupt[0m
+[0m16:17:45.623335 [info ] [MainThread]: 
+[0m16:17:45.624188 [info ] [MainThread]: Done. PASS=3 WARN=0 ERROR=0 SKIP=0 TOTAL=3
+[0m16:17:45.624647 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:17:45.625357 [debug] [MainThread]: Connection 'model.fda_project.stg_drugs' was properly closed.
+[0m16:17:45.625896 [debug] [MainThread]: Connection 'model.fda_project.stg_reactions' was properly closed.
+[0m16:17:45.626388 [debug] [MainThread]: Connection 'model.fda_project.stg_reports' was properly closed.
+[0m16:17:45.626932 [debug] [MainThread]: Connection 'model.fda_project.fct_fda_adverse_events' was properly closed.
+[0m16:17:45.627917 [info ] [MainThread]: 
+[0m16:17:45.628657 [info ] [MainThread]: Finished running 3 view models in 0 hours 2 minutes and 50.33 seconds (170.33s).
+[0m16:17:45.631242 [error] [MainThread]: Encountered an error:
+
+[0m16:17:45.638735 [error] [MainThread]: Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 91, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 76, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 169, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 198, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 245, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/requires.py", line 278, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/cli/main.py", line 626, in run
+    results = task.run()
+              ^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/task/runnable.py", line 502, in run
+    result = self.execute_with_hooks(selected_uids)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/task/runnable.py", line 463, in execute_with_hooks
+    res = self.execute_nodes()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/dbt/task/runnable.py", line 387, in execute_nodes
+    self.run_queue(pool)
+  File "/usr/local/lib/python3.11/site-packages/dbt/task/runnable.py", line 319, in run_queue
+    self.job_queue.join()
+  File "/usr/local/lib/python3.11/site-packages/dbt/graph/queue.py", line 198, in join
+    self.inner.join()
+  File "/usr/local/lib/python3.11/queue.py", line 90, in join
+    self.all_tasks_done.wait()
+  File "/usr/local/lib/python3.11/threading.py", line 320, in wait
+    waiter.acquire()
+KeyboardInterrupt
+
+[0m16:17:45.649983 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 170.53998, "process_user_time": 2.487305, "process_kernel_time": 0.650896, "process_mem_max_rss": "113348", "process_in_blocks": "2440", "process_out_blocks": "3032", "command_success": false}
+[0m16:17:45.656153 [debug] [MainThread]: Command `dbt run` failed at 16:17:45.655772 after 170.55 seconds
+[0m16:17:45.659281 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e9b38d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e8ce6f90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7981e8ce7390>]}
+[0m16:17:45.660174 [debug] [MainThread]: Flushing usage events
+[0m16:17:54.506861 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d4c39bf90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d4b3b1d50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d4ad8e390>]}
+
+
+============================== 16:17:54.513642 | 27cf7759-44d3-4fe3-a5a1-0bd945d27b0a ==============================
+[0m16:17:54.513642 [info ] [MainThread]: Running with dbt=1.7.19
+[0m16:17:54.514099 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/usr/app/logs', 'debug': 'False', 'profiles_dir': '/root/.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m16:17:54.652609 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d496a3810>]}
+[0m16:17:54.705034 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d4c627550>]}
+[0m16:17:54.705852 [info ] [MainThread]: Registered adapter: postgres=1.7.19
+[0m16:17:54.714503 [debug] [MainThread]: checksum: a8d43cdff37d0f32d7fbe4c5c25bea4bb6c86e162f8ce8fdb1a38cdcf7495431, vars: {}, profile: , target: , version: 1.7.19
+[0m16:17:54.784615 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m16:17:54.785122 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m16:17:54.790521 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d49438610>]}
+[0m16:17:54.803823 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d49542590>]}
+[0m16:17:54.804977 [info ] [MainThread]: Found 4 models, 3 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models
+[0m16:17:54.805560 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d4ad58190>]}
+[0m16:17:54.807304 [info ] [MainThread]: 
+[0m16:17:54.808317 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m16:17:54.809817 [debug] [ThreadPool]: Acquiring new postgres connection 'list_airflow'
+[0m16:17:54.821163 [debug] [ThreadPool]: Using postgres connection "list_airflow"
+[0m16:17:54.821527 [debug] [ThreadPool]: On list_airflow: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m16:17:54.821789 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:17:54.838047 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.0 seconds
+[0m16:17:54.839749 [debug] [ThreadPool]: On list_airflow: Close
+[0m16:17:54.841784 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_airflow, now list_airflow_public)
+[0m16:17:54.848639 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:17:54.849106 [debug] [ThreadPool]: On list_airflow_public: BEGIN
+[0m16:17:54.849434 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:17:54.858340 [debug] [ThreadPool]: SQL status: BEGIN in 0.0 seconds
+[0m16:17:54.858748 [debug] [ThreadPool]: Using postgres connection "list_airflow_public"
+[0m16:17:54.859083 [debug] [ThreadPool]: On list_airflow_public: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "list_airflow_public"} */
+select
+      'airflow' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'airflow' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m16:17:54.868484 [debug] [ThreadPool]: SQL status: SELECT 49 in 0.0 seconds
+[0m16:17:54.871101 [debug] [ThreadPool]: On list_airflow_public: ROLLBACK
+[0m16:17:54.871844 [debug] [ThreadPool]: On list_airflow_public: Close
+[0m16:17:54.885923 [debug] [MainThread]: Using postgres connection "master"
+[0m16:17:54.886340 [debug] [MainThread]: On master: BEGIN
+[0m16:17:54.886625 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:17:54.895491 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:17:54.895877 [debug] [MainThread]: Using postgres connection "master"
+[0m16:17:54.896208 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m16:17:54.905597 [debug] [MainThread]: SQL status: SELECT 3 in 0.0 seconds
+[0m16:17:54.907724 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d496d3390>]}
+[0m16:17:54.908211 [debug] [MainThread]: On master: ROLLBACK
+[0m16:17:54.908918 [debug] [MainThread]: Using postgres connection "master"
+[0m16:17:54.909257 [debug] [MainThread]: On master: BEGIN
+[0m16:17:54.909982 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:17:54.910334 [debug] [MainThread]: On master: COMMIT
+[0m16:17:54.910770 [debug] [MainThread]: Using postgres connection "master"
+[0m16:17:54.911114 [debug] [MainThread]: On master: COMMIT
+[0m16:17:54.911632 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m16:17:54.911942 [debug] [MainThread]: On master: Close
+[0m16:17:54.912674 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m16:17:54.913078 [info ] [MainThread]: 
+[0m16:17:54.924113 [debug] [Thread-1 (]: Began running node model.fda_project.stg_drugs
+[0m16:17:54.924752 [debug] [Thread-2 (]: Began running node model.fda_project.stg_reactions
+[0m16:17:54.925762 [debug] [Thread-3 (]: Began running node model.fda_project.stg_reports
+[0m16:17:54.925327 [info ] [Thread-1 (]: 1 of 4 START sql view model public.stg_drugs ................................... [RUN]
+[0m16:17:54.926579 [info ] [Thread-2 (]: 2 of 4 START sql view model public.stg_reactions ............................... [RUN]
+[0m16:17:54.927145 [info ] [Thread-3 (]: 3 of 4 START sql view model public.stg_reports ................................. [RUN]
+[0m16:17:54.927919 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_airflow_public, now model.fda_project.stg_drugs)
+[0m16:17:54.928850 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.fda_project.stg_reactions'
+[0m16:17:54.930046 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.fda_project.stg_reports'
+[0m16:17:54.930627 [debug] [Thread-1 (]: Began compiling node model.fda_project.stg_drugs
+[0m16:17:54.931188 [debug] [Thread-2 (]: Began compiling node model.fda_project.stg_reactions
+[0m16:17:54.931642 [debug] [Thread-3 (]: Began compiling node model.fda_project.stg_reports
+[0m16:17:54.940819 [debug] [Thread-1 (]: Writing injected SQL for node "model.fda_project.stg_drugs"
+[0m16:17:54.944515 [debug] [Thread-2 (]: Writing injected SQL for node "model.fda_project.stg_reactions"
+[0m16:17:54.949284 [debug] [Thread-3 (]: Writing injected SQL for node "model.fda_project.stg_reports"
+[0m16:17:54.951212 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (compile): 16:17:54.941292 => 16:17:54.950838
+[0m16:17:54.952028 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (compile): 16:17:54.945141 => 16:17:54.951643
+[0m16:17:54.952504 [debug] [Thread-2 (]: Began executing node model.fda_project.stg_reactions
+[0m16:17:54.953071 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (compile): 16:17:54.931962 => 16:17:54.952812
+[0m16:17:54.953616 [debug] [Thread-3 (]: Began executing node model.fda_project.stg_reports
+[0m16:17:54.970693 [debug] [Thread-1 (]: Began executing node model.fda_project.stg_drugs
+[0m16:17:55.000410 [debug] [Thread-2 (]: Writing runtime sql for node "model.fda_project.stg_reactions"
+[0m16:17:55.001460 [debug] [Thread-3 (]: Writing runtime sql for node "model.fda_project.stg_reports"
+[0m16:17:55.007867 [debug] [Thread-1 (]: Writing runtime sql for node "model.fda_project.stg_drugs"
+[0m16:17:55.009902 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:17:55.010561 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:17:55.011271 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: BEGIN
+[0m16:17:55.012126 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:17:55.012424 [debug] [Thread-3 (]: On model.fda_project.stg_reports: BEGIN
+[0m16:17:55.012917 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m16:17:55.013413 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: BEGIN
+[0m16:17:55.013800 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m16:17:55.014442 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m16:17:55.022046 [debug] [Thread-2 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:17:55.022917 [debug] [Thread-3 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:17:55.023294 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:17:55.023728 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:17:55.024042 [debug] [Thread-1 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:17:55.024757 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+
+  create view "airflow"."public"."stg_reactions__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reactions AS (
+    SELECT * FROM "airflow"."public"."reactions"
+)
+
+SELECT
+    reaction_id,
+    safetyreportid,
+    -- Trim whitespace and handle occasional missing values safely
+    COALESCE(TRIM(reaction_meddra_pt), 'Unknown/Unspecified Term') AS reaction_meddra_pt
+
+FROM raw_reactions
+  );
+[0m16:17:55.025184 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+
+  create view "airflow"."public"."stg_reports__dbt_tmp"
+    
+    
+  as (
+    WITH raw_reports AS (
+    SELECT * FROM "airflow"."public"."reports"
+)
+
+SELECT
+    safetyreportid,
+    safetyreportversion,
+    receivedate,
+    transmissiondate,
+    primarysourcecountry,
+    occurcountry,
+    
+    -- Decode reporttype strictly per your project dictionary
+    CASE 
+        WHEN reporttype = 1 THEN 'Spontaneous'
+        WHEN reporttype = 2 THEN 'Report from study'
+        WHEN reporttype = 3 THEN 'Other'
+        WHEN reporttype = 4 THEN 'Not available to sender (unknown)'
+        ELSE 'Unspecified'
+    END AS reporttype,
+
+    -- Decode serious in place
+    CASE 
+        WHEN serious = 1 THEN 'Yes'
+        WHEN serious = 2 THEN 'No'
+        ELSE 'Unspecified'
+    END AS serious,
+
+    -- Decode seriousness outcome flags in place
+    CASE WHEN seriousnessdeath = 1 THEN 'Yes' WHEN seriousnessdeath = 2 THEN 'No' ELSE 'No' END AS seriousnessdeath,
+    CASE WHEN seriousnessdisabling = 1 THEN 'Yes' WHEN seriousnessdisabling = 2 THEN 'No' ELSE 'No' END AS seriousnessdisabling,
+    CASE WHEN seriousnessother = 1 THEN 'Yes' WHEN seriousnessother = 2 THEN 'No' ELSE 'No' END AS seriousnessother,
+
+    patient_onset_age,
+    
+    -- Decode patient_onset_age_unit in place
+    CASE 
+        WHEN patient_onset_age_unit = 800 THEN 'Decade'
+        WHEN patient_onset_age_unit = 801 THEN 'Year'
+        WHEN patient_onset_age_unit = 802 THEN 'Month'
+        WHEN patient_onset_age_unit = 803 THEN 'Week'
+        WHEN patient_onset_age_unit = 804 THEN 'Day'
+        WHEN patient_onset_age_unit = 805 THEN 'Hour'
+        ELSE 'Unknown'
+    END AS patient_onset_age_unit,
+
+    -- Decode patient_sex in place
+    CASE 
+        WHEN patient_sex = 1 THEN 'Male'
+        WHEN patient_sex = 2 THEN 'Female'
+        WHEN patient_sex = 0 THEN 'Unknown (Missing, unspecified, or unclear data)'
+        ELSE 'Unknown'
+    END AS patient_sex,
+
+    patient_death_date
+
+FROM raw_reports
+  );
+[0m16:17:55.025573 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:17:55.026099 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+
+  create view "airflow"."public"."stg_drugs__dbt_tmp"
+    
+    
+  as (
+    WITH raw_drugs AS (
+    SELECT * FROM "airflow"."public"."drugs"
+)
+
+SELECT
+    drug_id,
+    safetyreportid,
+    -- Strips non-alphanumeric characters from the start, then trims and capitalizes
+    UPPER(TRIM(REGEXP_REPLACE(medicinal_product, '^[^a-zA-Z0-9]+', ''))) AS medicinal_product,
+    
+    CASE 
+        WHEN drug_characterization = 1 THEN 'Suspect'
+        WHEN drug_characterization = 2 THEN 'Concomitant'
+        WHEN drug_characterization = 3 THEN 'Interacting'
+        ELSE 'Unspecified'
+    END AS drug_characterization
+
+FROM raw_drugs
+  );
+[0m16:17:55.032000 [debug] [Thread-2 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:17:55.039471 [debug] [Thread-3 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:17:55.040076 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.0 seconds
+[0m16:17:55.041244 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:17:55.044386 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:17:55.047204 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:17:55.047556 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions" rename to "stg_reactions__dbt_backup"
+[0m16:17:55.047898 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports" rename to "stg_reports__dbt_backup"
+[0m16:17:55.048282 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+alter table "airflow"."public"."stg_drugs" rename to "stg_drugs__dbt_backup"
+[0m16:17:55.049885 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:17:55.050223 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:17:55.052913 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:17:55.053477 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:17:55.058559 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:17:55.059182 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+alter table "airflow"."public"."stg_reactions__dbt_tmp" rename to "stg_reactions"
+[0m16:17:55.061788 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:17:55.062354 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+alter table "airflow"."public"."stg_reports__dbt_tmp" rename to "stg_reports"
+[0m16:17:55.063002 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+alter table "airflow"."public"."stg_drugs__dbt_tmp" rename to "stg_drugs"
+[0m16:17:55.063625 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:17:55.076067 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:17:55.080669 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:17:55.081158 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:17:55.083401 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: COMMIT
+[0m16:17:55.084329 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:17:55.087091 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:17:55.087635 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:17:55.088086 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: COMMIT
+[0m16:17:55.088514 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:17:55.089023 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: COMMIT
+[0m16:17:55.089607 [debug] [Thread-3 (]: On model.fda_project.stg_reports: COMMIT
+[0m16:17:55.093164 [debug] [Thread-2 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:17:55.098681 [debug] [Thread-2 (]: Applying DROP to: "airflow"."public"."stg_reactions__dbt_backup"
+[0m16:17:55.099245 [debug] [Thread-1 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:17:55.099616 [debug] [Thread-3 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:17:55.104290 [debug] [Thread-2 (]: Using postgres connection "model.fda_project.stg_reactions"
+[0m16:17:55.106552 [debug] [Thread-1 (]: Applying DROP to: "airflow"."public"."stg_drugs__dbt_backup"
+[0m16:17:55.108598 [debug] [Thread-3 (]: Applying DROP to: "airflow"."public"."stg_reports__dbt_backup"
+[0m16:17:55.108962 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reactions"} */
+drop view if exists "airflow"."public"."stg_reactions__dbt_backup" cascade
+[0m16:17:55.109770 [debug] [Thread-1 (]: Using postgres connection "model.fda_project.stg_drugs"
+[0m16:17:55.110565 [debug] [Thread-3 (]: Using postgres connection "model.fda_project.stg_reports"
+[0m16:17:55.111050 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_drugs"} */
+drop view if exists "airflow"."public"."stg_drugs__dbt_backup" cascade
+[0m16:17:55.111471 [debug] [Thread-3 (]: On model.fda_project.stg_reports: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.stg_reports"} */
+drop view if exists "airflow"."public"."stg_reports__dbt_backup" cascade
+[0m16:17:55.117090 [debug] [Thread-2 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:17:55.118523 [debug] [Thread-2 (]: Timing info for model.fda_project.stg_reactions (execute): 16:17:54.953918 => 16:17:55.118342
+[0m16:17:55.118855 [debug] [Thread-2 (]: On model.fda_project.stg_reactions: Close
+[0m16:17:55.119535 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d49314610>]}
+[0m16:17:55.119923 [debug] [Thread-3 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:17:55.120536 [info ] [Thread-2 (]: 2 of 4 OK created sql view model public.stg_reactions .......................... [[32mCREATE VIEW[0m in 0.19s]
+[0m16:17:55.120932 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.0 seconds
+[0m16:17:55.122225 [debug] [Thread-3 (]: Timing info for model.fda_project.stg_reports (execute): 16:17:54.991210 => 16:17:55.122055
+[0m16:17:55.122796 [debug] [Thread-2 (]: Finished running node model.fda_project.stg_reactions
+[0m16:17:55.123950 [debug] [Thread-1 (]: Timing info for model.fda_project.stg_drugs (execute): 16:17:55.001878 => 16:17:55.123786
+[0m16:17:55.124361 [debug] [Thread-3 (]: On model.fda_project.stg_reports: Close
+[0m16:17:55.124925 [debug] [Thread-1 (]: On model.fda_project.stg_drugs: Close
+[0m16:17:55.125641 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d4937f810>]}
+[0m16:17:55.126118 [info ] [Thread-3 (]: 3 of 4 OK created sql view model public.stg_reports ............................ [[32mCREATE VIEW[0m in 0.20s]
+[0m16:17:55.126592 [debug] [Thread-3 (]: Finished running node model.fda_project.stg_reports
+[0m16:17:55.127153 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d49565dd0>]}
+[0m16:17:55.127808 [info ] [Thread-1 (]: 1 of 4 OK created sql view model public.stg_drugs .............................. [[32mCREATE VIEW[0m in 0.20s]
+[0m16:17:55.128482 [debug] [Thread-1 (]: Finished running node model.fda_project.stg_drugs
+[0m16:17:55.130187 [debug] [Thread-4 (]: Began running node model.fda_project.fct_fda_adverse_events
+[0m16:17:55.131000 [info ] [Thread-4 (]: 4 of 4 START sql table model public.fct_fda_adverse_events ..................... [RUN]
+[0m16:17:55.131877 [debug] [Thread-4 (]: Acquiring new postgres connection 'model.fda_project.fct_fda_adverse_events'
+[0m16:17:55.132210 [debug] [Thread-4 (]: Began compiling node model.fda_project.fct_fda_adverse_events
+[0m16:17:55.135421 [debug] [Thread-4 (]: Writing injected SQL for node "model.fda_project.fct_fda_adverse_events"
+[0m16:17:55.136295 [debug] [Thread-4 (]: Timing info for model.fda_project.fct_fda_adverse_events (compile): 16:17:55.132410 => 16:17:55.135984
+[0m16:17:55.136696 [debug] [Thread-4 (]: Began executing node model.fda_project.fct_fda_adverse_events
+[0m16:17:55.161057 [debug] [Thread-4 (]: Writing runtime sql for node "model.fda_project.fct_fda_adverse_events"
+[0m16:17:55.162328 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m16:17:55.163061 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: BEGIN
+[0m16:17:55.163436 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m16:17:55.174084 [debug] [Thread-4 (]: SQL status: BEGIN in 0.0 seconds
+[0m16:17:55.174838 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m16:17:55.175348 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.fct_fda_adverse_events"} */
+
+  
+    
+
+  create  table "airflow"."public"."fct_fda_adverse_events__dbt_tmp"
+  
+  
+    as
+  
+  (
+    WITH reports AS (
+    SELECT * FROM "airflow"."public"."stg_reports"
+),
+drugs AS (
+    SELECT * FROM "airflow"."public"."stg_drugs"
+),
+reactions AS (
+    SELECT * FROM "airflow"."public"."stg_reactions"
+)
+
+SELECT
+    r.safetyreportid,
+    r.safetyreportversion,
+    r.receivedate,
+    r.transmissiondate,
+    r.primarysourcecountry,
+    r.occurcountry,
+    r.reporttype,
+    r.serious,
+    r.seriousnessdeath,
+    r.seriousnessdisabling,
+    r.seriousnessother,
+    r.patient_onset_age,
+    r.patient_onset_age_unit,
+    r.patient_sex,
+    r.patient_death_date,
+    d.drug_id,
+    d.medicinal_product,
+    d.drug_characterization,
+    rx.reaction_id,
+    rx.reaction_meddra_pt
+FROM reports r
+LEFT JOIN drugs d ON r.safetyreportid = d.safetyreportid
+LEFT JOIN reactions rx ON r.safetyreportid = rx.safetyreportid
+  );
+  
+[0m16:20:33.373605 [debug] [Thread-4 (]: SQL status: SELECT 56434594 in 158.0 seconds
+[0m16:20:33.453999 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m16:20:33.454727 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.fct_fda_adverse_events"} */
+alter table "airflow"."public"."fct_fda_adverse_events" rename to "fct_fda_adverse_events__dbt_backup"
+[0m16:20:33.470024 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:20:33.475082 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m16:20:33.475489 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.fct_fda_adverse_events"} */
+alter table "airflow"."public"."fct_fda_adverse_events__dbt_tmp" rename to "fct_fda_adverse_events"
+[0m16:20:33.476561 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.0 seconds
+[0m16:20:33.497434 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: COMMIT
+[0m16:20:33.498316 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m16:20:33.498653 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: COMMIT
+[0m16:20:33.504432 [debug] [Thread-4 (]: SQL status: COMMIT in 0.0 seconds
+[0m16:20:33.508176 [debug] [Thread-4 (]: Applying DROP to: "airflow"."public"."fct_fda_adverse_events__dbt_backup"
+[0m16:20:33.513351 [debug] [Thread-4 (]: Using postgres connection "model.fda_project.fct_fda_adverse_events"
+[0m16:20:33.513831 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: /* {"app": "dbt", "dbt_version": "1.7.19", "profile_name": "fda_project", "target_name": "dev", "node_id": "model.fda_project.fct_fda_adverse_events"} */
+drop table if exists "airflow"."public"."fct_fda_adverse_events__dbt_backup" cascade
+[0m16:20:33.925493 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.0 seconds
+[0m16:20:33.929666 [debug] [Thread-4 (]: Timing info for model.fda_project.fct_fda_adverse_events (execute): 16:17:55.136935 => 16:20:33.928361
+[0m16:20:33.930470 [debug] [Thread-4 (]: On model.fda_project.fct_fda_adverse_events: Close
+[0m16:20:33.936423 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '27cf7759-44d3-4fe3-a5a1-0bd945d27b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d493a1750>]}
+[0m16:20:33.939352 [info ] [Thread-4 (]: 4 of 4 OK created sql table model public.fct_fda_adverse_events ................ [[32mSELECT 56434594[0m in 158.80s]
+[0m16:20:33.941191 [debug] [Thread-4 (]: Finished running node model.fda_project.fct_fda_adverse_events
+[0m16:20:33.959760 [debug] [MainThread]: Using postgres connection "master"
+[0m16:20:33.960662 [debug] [MainThread]: On master: BEGIN
+[0m16:20:33.961272 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:20:34.022203 [debug] [MainThread]: SQL status: BEGIN in 0.0 seconds
+[0m16:20:34.022657 [debug] [MainThread]: On master: COMMIT
+[0m16:20:34.022923 [debug] [MainThread]: Using postgres connection "master"
+[0m16:20:34.023332 [debug] [MainThread]: On master: COMMIT
+[0m16:20:34.024032 [debug] [MainThread]: SQL status: COMMIT in 0.0 seconds
+[0m16:20:34.024618 [debug] [MainThread]: On master: Close
+[0m16:20:34.025893 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:20:34.026196 [debug] [MainThread]: Connection 'model.fda_project.stg_drugs' was properly closed.
+[0m16:20:34.026467 [debug] [MainThread]: Connection 'model.fda_project.stg_reactions' was properly closed.
+[0m16:20:34.026726 [debug] [MainThread]: Connection 'model.fda_project.stg_reports' was properly closed.
+[0m16:20:34.026975 [debug] [MainThread]: Connection 'model.fda_project.fct_fda_adverse_events' was properly closed.
+[0m16:20:34.028264 [info ] [MainThread]: 
+[0m16:20:34.028893 [info ] [MainThread]: Finished running 3 view models, 1 table model in 0 hours 2 minutes and 39.22 seconds (159.22s).
+[0m16:20:34.032032 [debug] [MainThread]: Command end result
+[0m16:20:34.081090 [info ] [MainThread]: 
+[0m16:20:34.082097 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m16:20:34.082590 [info ] [MainThread]: 
+[0m16:20:34.083141 [info ] [MainThread]: Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4
+[0m16:20:34.091556 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 159.38449, "process_user_time": 2.480111, "process_kernel_time": 0.582148, "process_mem_max_rss": "110452", "process_in_blocks": "5152", "process_out_blocks": "3032"}
+[0m16:20:34.094430 [debug] [MainThread]: Command `dbt run` succeeded at 16:20:34.094174 after 159.39 seconds
+[0m16:20:34.096178 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d4ed03250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d4edf4310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x771d4ee849d0>]}
+[0m16:20:34.096612 [debug] [MainThread]: Flushing usage events

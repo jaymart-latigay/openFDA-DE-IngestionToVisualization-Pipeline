@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: public
+    database: airflow
+    schema: public
+    tables:
+      - name: reports
+      - name: drugs
+      - name: reactions
+
