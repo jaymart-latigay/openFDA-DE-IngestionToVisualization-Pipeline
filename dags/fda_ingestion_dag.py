@@ -1,12 +1,14 @@
 import json
 import logging
 from datetime import datetime, timedelta
+from tkinter import Variable
 import requests
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator  # Added to run Docker/dbt
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from airflow.models import Variable
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +26,7 @@ def stream_fda_data_to_postgres(**kwargs):
     """Hits openFDA API endpoints chronologically and paginates through ALL day records."""
     
     logical_date = kwargs['ds_nodash'] 
-    API_KEY = "6zUQexgajbgPWDST8fldh5jU2HP0b4oveV4RPGBL"
+    API_KEY = Variable.get("OPENFDA_API_KEY")
     
     # Connect to PostgreSQL outside the loop
     pg_hook = PostgresHook(postgres_conn_id='postgres_default')

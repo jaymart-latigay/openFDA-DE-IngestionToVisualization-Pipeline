@@ -1,0 +1,30 @@
+
+
+# 1. Python Environment & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+
+# 2. IDE & Local Configuration
+.vscode/
+.idea/
+*.swp
+*.log
+.DS_Store
+
+# 3. Docker & Local Database Storage (Crucial!)
+# Never push raw database storage volumes to GitHub
+.docker/
+pgdata/
+postgres_data/
+
+# 4. Data Engineering Specifics (dbt / Airflow local logs)
+logs/
+target/
+dbt_modules/
+dbt_packages/
+modules/
