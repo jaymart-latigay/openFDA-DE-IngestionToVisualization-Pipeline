@@ -20,6 +20,8 @@ An enterprise-grade, event-driven Extract-Load-Transform (ELT) data pipeline tha
 
 The data framework separates processing stages cleanly to optimize throughput and isolate state mutations during execution.
 
+![Data Engineering Pipeline Architecture](http://github.com/jaymart-latigay/openFDA-DE-IngestionToVisualization-Pipeline/blob/main/DS240%20Pipeline.png)
+
 * **Data Source:** openFDA Drug Adverse Event REST API Endpoints.
 * **Extraction & Ingestion Engine:** Python 3.11 optimized via Airflow `PostgresHook` abstractions.
 * **Core Data Warehouse:** PostgreSQL Relational Engine.
